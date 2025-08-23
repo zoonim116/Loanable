@@ -1,31 +1,49 @@
-<p align="center">
-  <a href="https://roots.io/sage/"><img alt="Sage" src="https://cdn.roots.io/app/uploads/logo-sage.svg" height="100"></a>
-</p>
+# Loanable
 
-<p align="center">
-  <a href="https://packagist.org/packages/roots/sage"><img alt="Packagist Installs" src="https://img.shields.io/packagist/dt/roots/sage?label=projects%20created&colorB=2b3072&colorA=525ddc&style=flat-square"></a>
-  <a href="https://github.com/roots/sage/actions/workflows/main.yml"><img alt="Build Status" src="https://img.shields.io/github/actions/workflow/status/roots/sage/main.yml?branch=main&logo=github&label=CI&style=flat-square"></a>
-  <a href="https://bsky.app/profile/roots.dev"><img alt="Follow roots.dev on Bluesky" src="https://img.shields.io/badge/follow-@roots.dev-0085ff?logo=bluesky&style=flat-square"></a>
-</p>
+Loanable is a Wordpress theme based on [Sage](https://github.com/roots/sage)
 
-# Sage
+## Getting Started
 
-**Advanced hybrid WordPress starter theme with Laravel Blade and Tailwind CSS**
+These instructions will give you a copy of the project up and running on
+your local machine for development and testing purposes. See deployment
+for notes on deploying the project on a live system.
 
-- 🔧 Clean, efficient theme templating with Laravel Blade
-- ⚡️ Modern front-end development workflow powered by Vite
-- 🎨 Out of the box support for Tailwind CSS
-- 🚀 Harness the power of Laravel with [Acorn integration](https://github.com/roots/acorn)
-- 📦 Block editor support built-in
+### Prerequisites
 
-Sage brings proper PHP templating and modern JavaScript tooling to WordPress themes. Write organized, component-based code using Laravel Blade, enjoy instant builds and CSS hot-reloading with Vite, and leverage Laravel's robust feature set through Acorn.
+Requirements for the software and other tools to build, test and push 
+- Installed and running local instance of Wordpress 
+- [Git](https://git-scm.com/)
+- [Node](https://nodejs.org/en/download)
 
-[Read the docs to get started](https://roots.io/sage/docs/installation/)
+### Installing
 
-## Sponsors
+Navigate to Wordpress theme folder, create a new theme folder and clone git repository to a newly created folder.
 
-Sage is an open source project and completely free to use. If you've benefited from our projects and would like to support our future endeavors, [please consider sponsoring us](https://github.com/sponsors/roots).
+    cd ./wp-content/themes
+    mkdir loanable && cd loanable
+    git clone https://github.com/zoonim116/Loanable .
 
-<div align="center">
-<a href="https://carrot.com/"><img src="https://cdn.roots.io/app/uploads/carrot.svg" alt="Carrot" width="120" height="90"></a> <a href="https://wordpress.com/"><img src="https://cdn.roots.io/app/uploads/wordpress.svg" alt="WordPress.com" width="120" height="90"></a> <a href="https://worksitesafety.ca/careers/"><img src="https://cdn.roots.io/app/uploads/worksite-safety.svg" alt="Worksite Safety" width="120" height="90"></a> <a href="https://40q.agency/"><img src="https://cdn.roots.io/app/uploads/40q.svg" alt="40Q" width="120" height="90"></a> <a href="https://www.itineris.co.uk/"><img src="https://cdn.roots.io/app/uploads/itineris.svg" alt="Itineris" width="120" height="90"></a> <a href="https://bonsai.so/"><img src="https://cdn.roots.io/app/uploads/bonsai.svg" alt="Bonsai" width="120" height="90"></a>
-</div>
+Install node modules
+
+    npm -i
+    
+To build assets in development mode use:
+		
+    npm run dev
+    
+**Note!!!** Sometimes it can cause CORS errors. In this case add .env file in root of the theme and add APP_URL to file.
+
+    cd ./wp-content/themes/loanable
+    touch .env
+    echo "APP_URL=https://my-app.local" >> .env
+**Please do not forget to replace  https://my-app.local to your local domain**
+
+
+To build production ready assets use:
+		
+    npm run build
+
+
+## Deployment
+
+This section is in progress
