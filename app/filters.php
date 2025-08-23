@@ -14,3 +14,10 @@ namespace App;
 add_filter('excerpt_more', function () {
     return sprintf(' &hellip; <a href="%s">%s</a>', get_permalink(), __('Continued', 'sage'));
 });
+
+
+add_filter('upload_mimes', function ($mimes) {
+    $mimes['svg'] = 'image/svg+xml';
+    $mimes['webp'] = 'image/webp';
+    return $mimes;
+});
