@@ -30,6 +30,14 @@ Install node modules
 To build assets in development mode use:
 		
     npm run dev
+    
+**Note!!!** Sometimes it can cause CORS errors. In this case add .env file in root of the theme and add APP_URL to file.
+
+    cd ./wp-content/themes/loanable
+    touch .env
+    echo "APP_URL=https://my-app.local" >> .env
+**Please do not forget to replace  https://my-app.local to your local domain**
+
 
 To build production ready assets use:
 		
