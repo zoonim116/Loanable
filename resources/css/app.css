@@ -3,6 +3,7 @@
 @import "./blocks/_header.css";
 @import "./blocks/_buttons.css";
 @import "./blocks/_hero-block.css";
+@import "./blocks/_color-grid-block.css";
 @source "../views/";
 @source "../../app/";
 
