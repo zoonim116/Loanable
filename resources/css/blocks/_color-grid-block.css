@@ -1,0 +1,7 @@
+.wp-block-color-grid-block {
+  & + .wp-block-spacer {
+    @media (width < 48rem) {
+      display: none;
+    }
+  }
+}
