@@ -112,7 +112,7 @@ class FeefoTestimonialsBlock extends Block
         'align_content' => false,
         'full_height' => false,
         'anchor' => false,
-        'mode' => false,
+        'mode' => true,
         'multiple' => false,
         'jsx' => false,
         'color' => [
@@ -131,20 +131,7 @@ class FeefoTestimonialsBlock extends Block
      *
      * @var array
      */
-    public $styles = ['light', 'dark'];
-
-    /**
-     * The block preview example data.
-     *
-     * @var array
-     */
-    public $example = [
-        'items' => [
-            ['item' => 'Item one'],
-            ['item' => 'Item two'],
-            ['item' => 'Item three'],
-        ],
-    ];
+    public $styles = [];
 
     /**
      * The block template.
@@ -162,7 +149,7 @@ class FeefoTestimonialsBlock extends Block
     public function with(): array
     {
         return [
-            'items' => $this->items(),
+            'code' => $this->get_code(),
         ];
     }
 
@@ -173,10 +160,9 @@ class FeefoTestimonialsBlock extends Block
     {
         $fields = Builder::make('feefo_testimonials_block');
 
-        $fields
-            ->addRepeater('items')
-                ->addText('item')
-            ->endRepeater();
+        $fields->addTextarea('code', [
+            'label' => 'Feefo Code',
+        ]);
 
         return $fields->build();
     }
@@ -186,9 +172,9 @@ class FeefoTestimonialsBlock extends Block
      *
      * @return array
      */
-    public function items()
+    public function get_code()
     {
-        return get_field('items') ?: $this->example['items'];
+        return get_field('code') ?? false;
     }
 
     /**

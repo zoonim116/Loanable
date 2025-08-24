@@ -2,7 +2,9 @@
   <section {{ $attributes }}>
 @endunless
 
-    <div class="container"></div>
+    <div class="container">
+      {!! $code !!}
+    </div>
 
 @unless ($block->preview)
   </section>
