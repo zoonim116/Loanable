@@ -14,10 +14,7 @@
           <span></span>
         </div>
         <div class="mobile-menu absolute left-0 w-full lg:w-auto lg:relative flex flex-col lg:flex-row items-center gap-4 lg:gap-8 lg:order-1">
-          <ul class="header-nav">
-            <li><a href="#">Loans</a></li>
-            <li><a href="#">More</a></li>
-          </ul>
+          {!! wp_nav_menu(['theme_location' => 'primary_navigation', 'menu_class' => 'header-nav', 'container' => false, 'echo' => false]) !!}
           @if($phone)
             <a href="tel:{{$phone}}" class="btn btn-blue">
               Call us {{$phone}}
