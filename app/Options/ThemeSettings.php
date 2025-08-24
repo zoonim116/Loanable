@@ -38,6 +38,9 @@ class ThemeSettings extends Field
                 ->addText('header_phone', [
                     'label' => 'Phone',
                 ])
+                ->addText('feefo_code', [
+                    'label' => 'Feefo Code',
+                ])
             ->addTab('footer', [
                 'label' => 'Footer',
             ])

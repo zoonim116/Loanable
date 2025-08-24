@@ -112,7 +112,7 @@ class CountersBlock extends Block
         'align_content' => false,
         'full_height' => false,
         'anchor' => false,
-        'mode' => false,
+        'mode' => true,
         'multiple' => false,
         'jsx' => false,
         'color' => [
@@ -131,20 +131,8 @@ class CountersBlock extends Block
      *
      * @var array
      */
-    public $styles = ['light', 'dark'];
+    public $styles = [];
 
-    /**
-     * The block preview example data.
-     *
-     * @var array
-     */
-    public $example = [
-        'items' => [
-            ['item' => 'Item one'],
-            ['item' => 'Item two'],
-            ['item' => 'Item three'],
-        ],
-    ];
 
     /**
      * The block template.
@@ -174,8 +162,18 @@ class CountersBlock extends Block
         $fields = Builder::make('counters_block');
 
         $fields
-            ->addRepeater('items')
-                ->addText('item')
+            ->addRepeater('items', [
+                'title' => __('Items'),
+                'button_label' => __('Add Item'),
+                'min' => 1,
+                'max' => 4
+            ])
+                ->addText('title', [
+                    'label' => 'Title',
+                ])
+                ->addText('sub_title', [
+                    'label' => 'Sub Title',
+                ])
             ->endRepeater();
 
         return $fields->build();
@@ -188,7 +186,7 @@ class CountersBlock extends Block
      */
     public function items()
     {
-        return get_field('items') ?: $this->example['items'];
+        return get_field('items') ?? [];
     }
 
     /**

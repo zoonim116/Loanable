@@ -12,7 +12,7 @@ class TwoColumnCTABlock extends Block
      *
      * @var string
      */
-    public $name = 'Two Column C T A Block';
+    public $name = 'Two Column CTA Block';
 
     /**
      * The block description.
@@ -112,7 +112,7 @@ class TwoColumnCTABlock extends Block
         'align_content' => false,
         'full_height' => false,
         'anchor' => false,
-        'mode' => false,
+        'mode' => true,
         'multiple' => false,
         'jsx' => false,
         'color' => [
@@ -131,7 +131,7 @@ class TwoColumnCTABlock extends Block
      *
      * @var array
      */
-    public $styles = ['light', 'dark'];
+    public $styles = [];
 
     /**
      * The block preview example data.
@@ -162,7 +162,11 @@ class TwoColumnCTABlock extends Block
     public function with(): array
     {
         return [
-            'items' => $this->items(),
+            'left_text' => $this->get_left_text(),
+            'link' => $this->get_link(),
+            'right_text' => $this->get_right_text(),
+            'logo' => $this->get_logo(),
+            'image' => $this->get_image(),
         ];
     }
 
@@ -173,10 +177,23 @@ class TwoColumnCTABlock extends Block
     {
         $fields = Builder::make('two_column_c_t_a_block');
 
-        $fields
-            ->addRepeater('items')
-                ->addText('item')
-            ->endRepeater();
+        $fields->addTab('Left Column')
+        ->addTextarea('left_text', [
+            'label' => 'Text',
+        ])
+        ->addLink('link', [
+            'label' => 'Button Link',
+        ])
+        ->addTab('Right Column')
+        ->addImage('image', [
+            'label' => 'Background Image',
+        ])
+        ->addImage('logo', [
+            'label' => 'Logo Image',
+        ])
+        ->addTextarea('right_text',[
+            'label' => 'Text',
+        ]);
 
         return $fields->build();
     }
@@ -186,9 +203,29 @@ class TwoColumnCTABlock extends Block
      *
      * @return array
      */
-    public function items()
+    public function get_left_text()
     {
-        return get_field('items') ?: $this->example['items'];
+        return get_field('left_text') ?? false;
+    }
+
+    public function get_link()
+    {
+        return get_field('link') ?? false;
+    }
+
+    public function get_image()
+    {
+        return get_field('image') ?? false;
+    }
+
+    public function get_logo()
+    {
+        return get_field('logo') ?? false;
+    }
+
+    public function get_right_text()
+    {
+        return get_field('right_text') ?? false;
     }
 
     /**
