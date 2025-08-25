@@ -1,0 +1,27 @@
+.faq-item {
+  p {
+    @apply mt-3;
+  }
+
+  .faq-item_text {
+    @apply hidden;
+  }
+
+  .faq-item_title {
+    svg {
+      @apply transition;
+    }
+  }
+
+  &.active {
+    .faq-item_text {
+      @apply block;
+    }
+
+    .faq-item_title {
+      svg {
+        @apply rotate-180 opacity-60;
+      }
+    }
+  }
+}
