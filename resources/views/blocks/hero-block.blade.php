@@ -11,20 +11,22 @@
           @if($subtitle)
             <p>{{$subtitle}}</p>
           @endif
-          <p>
-            Agreements in principle in 60 minutes or less
-            <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <g clip-path="url(#clip0_65_94)">
-                <path d="M8.5 16.8929C12.8592 16.8929 16.3929 13.3592 16.3929 9.00003C16.3929 4.64093 12.8592 1.10718 8.5 1.10718C4.1409 1.10718 0.607147 4.64093 0.607147 9.00003C0.607147 13.3592 4.1409 16.8929 8.5 16.8929Z" stroke="#3A4969" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M8.5 5.96436V9.00007L11.5843 12.5944" stroke="#3A4969" stroke-linecap="round" stroke-linejoin="round"/>
-              </g>
-              <defs>
-                <clipPath id="clip0_65_94">
-                  <rect width="17" height="17" fill="white" transform="translate(0 0.5)"/>
-                </clipPath>
-              </defs>
-            </svg>
-          </p>
+          @if($secondary_subtitle)
+            <p>
+              {{$secondary_subtitle}}
+              <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_65_94)">
+                  <path d="M8.5 16.8929C12.8592 16.8929 16.3929 13.3592 16.3929 9.00003C16.3929 4.64093 12.8592 1.10718 8.5 1.10718C4.1409 1.10718 0.607147 4.64093 0.607147 9.00003C0.607147 13.3592 4.1409 16.8929 8.5 16.8929Z" stroke="#3A4969" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M8.5 5.96436V9.00007L11.5843 12.5944" stroke="#3A4969" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+                <defs>
+                  <clipPath id="clip0_65_94">
+                    <rect width="17" height="17" fill="white" transform="translate(0 0.5)"/>
+                  </clipPath>
+                </defs>
+              </svg>
+            </p>
+          @endif
           @if($button_link)
             <a href="{{ $button_link['url'] }}" target="{{ !empty($button_link['target']) ? $button_link['target'] : '_self'  }}" class="btn btn-pink my-4 lg:mt-6">{{ $button_link['title'] }}</a>
           @endif
@@ -39,7 +41,9 @@
         </div>
         <div class="wp-block-hero-block_grid hidden lg:grid grid-cols-3 lg:w-7/12 gap-6">
           <div class="relative rounded-2xl overflow-hidden col-span-2 row-span-2 h-[451px]">
-            <img src="{{$big_image['url']}}" alt="{{$big_image['alt']}}" class="w-full h-full object-cover">
+            @if($big_image)
+              <img src="{{$big_image['url']}}" alt="{{$big_image['alt']}}" class="w-full h-full object-cover">
+            @endif
             @if($big_image_overflow_image)
               <div class="absolute max-w-1/2 max-h-1/2 lg:bottom-8 xl:left-12 lg:bottom-8 xl:bottom-12">
                 <img src="{{$big_image_overflow_image['url']}}" alt="{{$big_image_overflow_image['alt']}}">

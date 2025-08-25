@@ -134,15 +134,6 @@ class HeroBlock extends Block
     public $styles = [];
 
     /**
-     * The block preview example data.
-     *
-     * @var array
-     */
-    public $example = [
-        'title' => 'Secured Loans <br/> <strong>Made Easy</strong>'
-    ];
-
-    /**
      * The block template.
      *
      * @var array

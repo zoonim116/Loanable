@@ -112,7 +112,7 @@ class PrivilegesBlock extends Block
         'align_content' => false,
         'full_height' => false,
         'anchor' => false,
-        'mode' => false,
+        'mode' => true,
         'multiple' => false,
         'jsx' => false,
         'color' => [
@@ -131,20 +131,8 @@ class PrivilegesBlock extends Block
      *
      * @var array
      */
-    public $styles = ['light', 'dark'];
+    public $styles = [];
 
-    /**
-     * The block preview example data.
-     *
-     * @var array
-     */
-    public $example = [
-        'items' => [
-            ['item' => 'Item one'],
-            ['item' => 'Item two'],
-            ['item' => 'Item three'],
-        ],
-    ];
 
     /**
      * The block template.
@@ -174,8 +162,18 @@ class PrivilegesBlock extends Block
         $fields = Builder::make('privileges_block');
 
         $fields
-            ->addRepeater('items')
-                ->addText('item')
+            ->addRepeater('items', [
+                'label' => 'Item',
+                'button_label' => 'Add Item',
+                'min' => 1,
+                'max' => 3
+            ])
+                ->addImage('icon', [
+                    'label' => 'Icon',
+                ])
+                ->addText('text', [
+                    'label' => 'Text',
+                ])
             ->endRepeater();
 
         return $fields->build();
@@ -188,7 +186,7 @@ class PrivilegesBlock extends Block
      */
     public function items()
     {
-        return get_field('items') ?: $this->example['items'];
+        return get_field('items') ?? [];
     }
 
     /**
