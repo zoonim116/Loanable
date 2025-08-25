@@ -112,7 +112,7 @@ class TextBlock extends Block
         'align_content' => false,
         'full_height' => false,
         'anchor' => false,
-        'mode' => false,
+        'mode' => true,
         'multiple' => false,
         'jsx' => false,
         'color' => [
@@ -131,20 +131,8 @@ class TextBlock extends Block
      *
      * @var array
      */
-    public $styles = ['light', 'dark'];
+    public $styles = [];
 
-    /**
-     * The block preview example data.
-     *
-     * @var array
-     */
-    public $example = [
-        'items' => [
-            ['item' => 'Item one'],
-            ['item' => 'Item two'],
-            ['item' => 'Item three'],
-        ],
-    ];
 
     /**
      * The block template.
@@ -162,7 +150,8 @@ class TextBlock extends Block
     public function with(): array
     {
         return [
-            'items' => $this->items(),
+            'left_text' => $this->get_left_text(),
+            'right_text' => $this->get_right_text(),
         ];
     }
 
@@ -174,21 +163,31 @@ class TextBlock extends Block
         $fields = Builder::make('text_block');
 
         $fields
-            ->addRepeater('items')
-                ->addText('item')
-            ->endRepeater();
+            ->addWysiwyg('left_text', [
+                'label' => 'Left Text',
+                'instructions' => 'Mark a part of text as bold to color in accent color',
+                'wrapper' => [
+                    'width' => '50%'
+                ]
+            ])
+            ->addWysiwyg('right_text', [
+                'label' => 'Right Text',
+                'wrapper' => [
+                    'width' => '50%'
+                ]
+            ]);
 
         return $fields->build();
     }
 
-    /**
-     * Retrieve the items.
-     *
-     * @return array
-     */
-    public function items()
+    public function get_right_text()
     {
-        return get_field('items') ?: $this->example['items'];
+        return get_field('right_text') ?? false;
+    }
+
+    public function get_left_text()
+    {
+        return get_field('left_text') ?? false;
     }
 
     /**

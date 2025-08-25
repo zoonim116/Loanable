@@ -5,7 +5,6 @@
 @import "./blocks/_hero-block.css";
 @import "./blocks/_color-grid-block.css";
 @import "./blocks/_faq.css";
-@import "./blocks/_feefo.css";
 @source "../views/";
 @source "../../app/";
 
@@ -138,7 +137,7 @@ h3 {
 
 .grid-text {
   p {
-    @apply text-base lg:text-[21px];
+    @apply text-base lg:text-[19px];
   }
 
   ul {

@@ -112,7 +112,7 @@ class TextImageBlock extends Block
         'align_content' => false,
         'full_height' => false,
         'anchor' => false,
-        'mode' => false,
+        'mode' => true,
         'multiple' => false,
         'jsx' => false,
         'color' => [
@@ -131,7 +131,7 @@ class TextImageBlock extends Block
      *
      * @var array
      */
-    public $styles = ['light', 'dark'];
+    public $styles = [];
 
     /**
      * The block preview example data.
@@ -162,7 +162,8 @@ class TextImageBlock extends Block
     public function with(): array
     {
         return [
-            'items' => $this->items(),
+            'image' => $this->get_image(),
+            'content' => $this->get_content()
         ];
     }
 
@@ -174,21 +175,25 @@ class TextImageBlock extends Block
         $fields = Builder::make('text_image_block');
 
         $fields
-            ->addRepeater('items')
-                ->addText('item')
-            ->endRepeater();
+            ->addImage('image', [
+                'label' => 'Image',
+            ])
+            ->addWysiwyg('content', [
+                'label' => 'Content',
+                'instructions' => 'Mark a part of text as bold to color in accent color',
+            ]);
 
         return $fields->build();
     }
 
-    /**
-     * Retrieve the items.
-     *
-     * @return array
-     */
-    public function items()
+    public function get_image()
     {
-        return get_field('items') ?: $this->example['items'];
+        return get_field('image') ?? false;
+    }
+
+    public function get_content()
+    {
+        return get_field('content') ?? false;
     }
 
     /**

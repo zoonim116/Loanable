@@ -12,7 +12,7 @@ class FAQBlock extends Block
      *
      * @var string
      */
-    public $name = 'F A Q Block';
+    public $name = 'FAQ Block';
 
     /**
      * The block description.
@@ -112,7 +112,7 @@ class FAQBlock extends Block
         'align_content' => false,
         'full_height' => false,
         'anchor' => false,
-        'mode' => false,
+        'mode' => true,
         'multiple' => false,
         'jsx' => false,
         'color' => [
@@ -131,20 +131,8 @@ class FAQBlock extends Block
      *
      * @var array
      */
-    public $styles = ['light', 'dark'];
+    public $styles = [];
 
-    /**
-     * The block preview example data.
-     *
-     * @var array
-     */
-    public $example = [
-        'items' => [
-            ['item' => 'Item one'],
-            ['item' => 'Item two'],
-            ['item' => 'Item three'],
-        ],
-    ];
 
     /**
      * The block template.
@@ -162,6 +150,9 @@ class FAQBlock extends Block
     public function with(): array
     {
         return [
+            'title' => $this->get_title(),
+            'subtitle' => $this->get_subtitle(),
+            'link' => $this->get_link(),
             'items' => $this->items(),
         ];
     }
@@ -174,21 +165,45 @@ class FAQBlock extends Block
         $fields = Builder::make('f_a_q_block');
 
         $fields
+            ->addWysiwyg('title', [
+                'label' => 'Title',
+                'instructions' => 'Mark a part of text as bold to color in accent color',
+            ])
+            ->addWysiwyg('subtitle', [
+                'label' => 'Subtitle',
+            ])
+            ->addLink('link', [
+                'label' => 'Button Link',
+            ])
             ->addRepeater('items')
-                ->addText('item')
+                ->addText('title', [
+                    'label' => 'Title',
+                ])
+                ->addWysiwyg('content', [
+                    'label' => 'Content',
+                ])
             ->endRepeater();
 
         return $fields->build();
     }
 
-    /**
-     * Retrieve the items.
-     *
-     * @return array
-     */
+    public function get_title()
+    {
+        return get_field('title') ?? false;
+    }
+
+    public function get_subtitle()
+    {
+        return get_field('subtitle') ?? false;
+    }
+
+    public function get_link()
+    {
+        return get_field('link') ?? false;
+    }
     public function items()
     {
-        return get_field('items') ?: $this->example['items'];
+        return get_field('items') ?? [];
     }
 
     /**

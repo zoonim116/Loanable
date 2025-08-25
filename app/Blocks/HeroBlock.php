@@ -131,20 +131,7 @@ class HeroBlock extends Block
      *
      * @var array
      */
-    public $styles = ['light', 'dark'];
-
-    /**
-     * The block preview example data.
-     *
-     * @var array
-     */
-    public $example = [
-        'items' => [
-            ['item' => 'Item one'],
-            ['item' => 'Item two'],
-            ['item' => 'Item three'],
-        ],
-    ];
+    public $styles = [];
 
     /**
      * The block template.
@@ -162,7 +149,16 @@ class HeroBlock extends Block
     public function with(): array
     {
         return [
-            'items' => $this->items(),
+            'title' => $this->title(),
+            'subtitle' => $this->subtitle(),
+            'secondary_subtitle' => $this->secondary_subtitle(),
+            'button_link' => $this->button_link(),
+            'after_button_text' => $this->after_button_text(),
+            'big_image' => $this->big_image(),
+            'big_image_overflow_image' => $this->big_image_overflow_image(),
+            'small_image' => $this->small_image(),
+            'heading' => $this->heading(),
+            'sub_heading' => $this->sub_heading(),
         ];
     }
 
@@ -174,9 +170,52 @@ class HeroBlock extends Block
         $fields = Builder::make('hero_block');
 
         $fields
-            ->addRepeater('items')
-                ->addText('item')
-            ->endRepeater();
+            ->addTab('Text Settings')
+            ->addWysiwyg('title', [
+                'label' => 'Title',
+                'media_upload' => false,
+                'default_value' => 'Secured Loans <br/> <strong>Made Easy</strong>',
+            ])
+            ->addText('subtitle', [
+                'label' => 'Subtitle',
+                'default_value' => 'Unlock the value in your home with expert advice, competitive rates, and 5-star service from Loanable.',
+            ])
+            ->addText('secondary_subtitle', [
+                'label' => 'Secondary Subtitle',
+                'default_value' => 'Agreements in principle in 60 minutes or less',
+            ])
+            ->addLink('button_link', [
+                'label' => 'Button Link',
+            ])
+            ->addText('after_button_text', [
+                'label' => 'After Button Text',
+                'default_value' => 'Authorised and regulated by the FCA',
+            ])
+            ->addTab('Images Settings', [])
+            ->addImage('big_image', [
+                'label' => 'Big Image',
+                'required' => true,
+            ])
+            ->addImage('big_image_overflow_image', [
+                'label' => 'Image over a Big Image',
+            ])
+            ->addText('heading', [
+                'label' => 'Title for a text card',
+                'wrapper' => [
+                    'width' => '50%',
+                ],
+                'default_value' => '400+',
+            ])
+            ->addText('sub_heading', [
+                'label' => 'Subtitle for a text card',
+                'wrapper' => [
+                    'width' => '50%',
+                ],
+                'default_value' => 'Secured loan products',
+            ])
+            ->addImage('small_image', [
+                'label' => 'Small Image',
+            ]);
 
         return $fields->build();
     }
@@ -186,9 +225,54 @@ class HeroBlock extends Block
      *
      * @return array
      */
-    public function items()
+    public function title()
     {
-        return get_field('items') ?: $this->example['items'];
+        return get_field('title') ?? false;
+    }
+
+    public function subtitle()
+    {
+        return get_field('subtitle') ?? false;
+    }
+
+    public function button_link()
+    {
+        return get_field('button_link') ?? false;
+    }
+
+    public function secondary_subtitle()
+    {
+        return get_field('secondary_subtitle') ?? false;
+    }
+
+    public function after_button_text()
+    {
+        return get_field('after_button_text') ?? false;
+    }
+
+    public function big_image()
+    {
+        return get_field('big_image') ?? false;
+    }
+
+    public function big_image_overflow_image()
+    {
+        return get_field('big_image_overflow_image') ?? false;
+    }
+
+    public function small_image()
+    {
+        return get_field('small_image') ?? false;
+    }
+
+    public function heading()
+    {
+        return get_field('heading') ?? false;
+    }
+
+    public function sub_heading()
+    {
+        return get_field('sub_heading') ?? false;
     }
 
     /**

@@ -112,7 +112,7 @@ class ColorGridBlock extends Block
         'align_content' => false,
         'full_height' => false,
         'anchor' => false,
-        'mode' => false,
+        'mode' => true,
         'multiple' => false,
         'jsx' => false,
         'color' => [
@@ -131,20 +131,7 @@ class ColorGridBlock extends Block
      *
      * @var array
      */
-    public $styles = ['light', 'dark'];
-
-    /**
-     * The block preview example data.
-     *
-     * @var array
-     */
-    public $example = [
-        'items' => [
-            ['item' => 'Item one'],
-            ['item' => 'Item two'],
-            ['item' => 'Item three'],
-        ],
-    ];
+    public $styles = [];
 
     /**
      * The block template.
@@ -162,7 +149,8 @@ class ColorGridBlock extends Block
     public function with(): array
     {
         return [
-            'items' => $this->items(),
+            'title' => $this->get_title(),
+            'cards' => $this->get_cards(),
         ];
     }
 
@@ -174,21 +162,50 @@ class ColorGridBlock extends Block
         $fields = Builder::make('color_grid_block');
 
         $fields
-            ->addRepeater('items')
-                ->addText('item')
+            ->addWysiwyg('title', [
+                'label' => 'Title',
+                'instructions' => 'Mark a part of text as bold to color in accent color',
+            ])
+            ->addRepeater('cards')
+                ->addSelect('bg_color', [
+                    'label' => 'Background color',
+                    'instructions' => 'Select color',
+                    'choices' => [
+                        'bg-pink-600' => 'Pink',
+                        'bg-blue-600' => 'Blue',
+                        'bg-black-800' => 'Black',
+                    ]
+                ])
+                ->addImage('icon', [
+                    'label' => 'Icon',
+                ])
+                ->addTextarea('card_title', [
+                    'label' => 'Title',
+                    'new_lines' => 'br',
+                    'rows' => 2,
+                ])
+                ->addTextarea('card_content', [
+                    'label' => 'Content',
+                    'new_lines' => 'br',
+                    'rows' => 5,
+                ])
+                ->addLink('card_link', [
+                    'label' => 'Button Link',
+                ])
             ->endRepeater();
 
         return $fields->build();
     }
 
-    /**
-     * Retrieve the items.
-     *
-     * @return array
-     */
-    public function items()
+
+    public function get_title()
     {
-        return get_field('items') ?: $this->example['items'];
+        return get_field('title') ?? false;
+    }
+
+    public function get_cards()
+    {
+        return get_field('cards') ?? false;
     }
 
     /**

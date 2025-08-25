@@ -112,7 +112,7 @@ class LoanRatesBlock extends Block
         'align_content' => false,
         'full_height' => false,
         'anchor' => false,
-        'mode' => false,
+        'mode' => true,
         'multiple' => false,
         'jsx' => false,
         'color' => [
@@ -131,7 +131,7 @@ class LoanRatesBlock extends Block
      *
      * @var array
      */
-    public $styles = ['light', 'dark'];
+    public $styles = [];
 
     /**
      * The block preview example data.
@@ -162,7 +162,10 @@ class LoanRatesBlock extends Block
     public function with(): array
     {
         return [
-            'items' => $this->items(),
+            'title' => $this->get_title(),
+            'sub_title' => $this->get_sub_title(),
+            'description' => $this->get_description(),
+            'link' => $this->get_link(),
         ];
     }
 
@@ -174,21 +177,41 @@ class LoanRatesBlock extends Block
         $fields = Builder::make('loan_rates_block');
 
         $fields
-            ->addRepeater('items')
-                ->addText('item')
-            ->endRepeater();
+            ->addWysiwyg('title', [
+                'label' => 'Title',
+                'instructions' => 'Mark a part of text as bold to color in accent color',
+            ])
+            ->addText('sub_title', [
+                'label' => 'Subtitle',
+            ])
+            ->addLink('link', [
+                'label' => 'Button Link',
+            ])
+            ->addTextarea('description', [
+                'label' => 'Under button text',
+            ]);
 
         return $fields->build();
     }
 
-    /**
-     * Retrieve the items.
-     *
-     * @return array
-     */
-    public function items()
+    public function get_title()
     {
-        return get_field('items') ?: $this->example['items'];
+        return get_field('title') ?? false;
+    }
+
+    public function get_sub_title()
+    {
+        return get_field('sub_title') ?? false;
+    }
+
+    public function get_link()
+    {
+        return get_field('link') ?? false;
+    }
+
+    public function get_description()
+    {
+        return get_field('description') ?? false;
     }
 
     /**
