@@ -4,10 +4,11 @@
   }
 
   .faq-item_text {
-    @apply hidden;
+    @apply max-h-0 overflow-hidden transition-all duration-700;
   }
 
   .faq-item_title {
+    @apply cursor-pointer;
     svg {
       @apply transition;
     }
@@ -15,7 +16,7 @@
 
   &.active {
     .faq-item_text {
-      @apply block;
+      @apply max-h-[500px];
     }
 
     .faq-item_title {

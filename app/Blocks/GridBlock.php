@@ -113,7 +113,7 @@ class GridBlock extends Block
         'full_height' => false,
         'anchor' => false,
         'mode' => true,
-        'multiple' => false,
+        'multiple' => true,
         'jsx' => false,
         'color' => [
             'background' => false,
@@ -176,15 +176,25 @@ class GridBlock extends Block
                     'ui_on_text' => 'Yes',
                     'ui_off_text' => 'No',
                 ])
+                ->addButtonGroup('align', [
+                    'label' => 'Alignment',
+                    'choices' => [
+                        'left' => 'Left',
+                        'center' => 'Center',
+                    ],
+                    'default_value' => 'center',
+                ])
                 ->addImage('icon', [
                     'label' => 'Icon',
-                    ''
                 ])
                 ->conditional('accent_card', '==', '0')
                 ->addTextArea('title', [
                     'label' => 'Title',
                     'rows' => 2,
                     'new_lines' => 'br'
+                ])
+                ->addWysiwyg('description', [
+                    'label' => 'Description',
                 ])
                 ->addLink('link', [
                     'label' => 'Link',

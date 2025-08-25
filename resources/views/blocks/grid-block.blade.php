@@ -19,14 +19,33 @@
                   @endif
               </div>
             @else
-              <div class="items-center text-center p-7 lg:p-8 rounded-2xl bg-gray-200 flex flex-col min-h-[207px] lg:min-h-[273px]">
+              <div @class([
+                        'p-7 lg:p-8 rounded-2xl bg-gray-200 flex flex-col min-h-[207px] lg:min-h-[273px]',
+                        'items-start text-left' => $card['align'] == 'left',
+                        'items-center text-center' => $card['align'] == 'center'
+                ])>
                 <div class="h-[44px] lg:h-[72px] flex items-center justify-center mb-4 lg:mb-7">
                   @if($card['icon'])
                     <img src="{{ $card['icon']['url'] }}" alt="{{ $card['icon']['alt'] }}" class="max-h-full">
                   @endif
                 </div>
                 @if($card['title'])
-                  <p class="font-bold text-[21px] lg:text-2xl">{!! $card['title'] !!} </p>
+                  <p @class([
+                        'font-bold text-[21px] br-desktop leading-9',
+                        'lg:text-2xl' => $card['align'] == 'center',
+                        'lg:text-[32px]' => $card['align'] == 'left'
+                    ])>
+                    {!! $card['title'] !!}
+                  </p>
+                @endif
+                @if($card['description'])
+                  <div @class([
+                      'text-block mt-6',
+                      'lg:text-[21px]' => $card['align'] == 'center',
+                      'grid-text' => $card['align'] == 'left'
+                    ])>
+                    {!! $card['description'] !!}
+                  </div>
                 @endif
                 @if($card['link'])
                  <a href="{{ $card['link']['url'] }}" target="{{ !empty($card['link']['target']) ? $card['link']['target'] : '_self'  }}" class="custom-underline uppercase mt-auto font-bold">{{ $card['link']['title'] }}</a>
