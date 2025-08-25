@@ -112,7 +112,7 @@ class GridBlock extends Block
         'align_content' => false,
         'full_height' => false,
         'anchor' => false,
-        'mode' => false,
+        'mode' => true,
         'multiple' => false,
         'jsx' => false,
         'color' => [
@@ -131,20 +131,7 @@ class GridBlock extends Block
      *
      * @var array
      */
-    public $styles = ['light', 'dark'];
-
-    /**
-     * The block preview example data.
-     *
-     * @var array
-     */
-    public $example = [
-        'items' => [
-            ['item' => 'Item one'],
-            ['item' => 'Item two'],
-            ['item' => 'Item three'],
-        ],
-    ];
+    public $styles = [];
 
     /**
      * The block template.
@@ -162,7 +149,8 @@ class GridBlock extends Block
     public function with(): array
     {
         return [
-            'items' => $this->items(),
+            'title' => $this->get_title(),
+            'cards' => $this->get_cards(),
         ];
     }
 
@@ -174,21 +162,47 @@ class GridBlock extends Block
         $fields = Builder::make('grid_block');
 
         $fields
-            ->addRepeater('items')
-                ->addText('item')
+            ->addWysiwyg('title', [
+                'label' => 'Title',
+                'instructions' => 'Mark a part of text as bold to color in accent color',
+            ])
+            ->addRepeater('cards', [
+                    'label' => 'Cards',
+                    'button_label' => 'Add Card',
+                    'min' => 1,
+                ])
+                ->addTrueFalse('accent_card', [
+                    'label' => 'Apply Accent color to Card?',
+                    'ui_on_text' => 'Yes',
+                    'ui_off_text' => 'No',
+                ])
+                ->addImage('icon', [
+                    'label' => 'Icon',
+                    ''
+                ])
+                ->conditional('accent_card', '==', '0')
+                ->addTextArea('title', [
+                    'label' => 'Title',
+                    'rows' => 2,
+                    'new_lines' => 'br'
+                ])
+                ->addLink('link', [
+                    'label' => 'Link',
+                ])
             ->endRepeater();
 
         return $fields->build();
     }
 
-    /**
-     * Retrieve the items.
-     *
-     * @return array
-     */
-    public function items()
+
+    public function get_cards()
     {
-        return get_field('items') ?: $this->example['items'];
+        return get_field('cards') ?? false;
+    }
+
+    public function get_title()
+    {
+        return get_field('title') ?? false;
     }
 
     /**

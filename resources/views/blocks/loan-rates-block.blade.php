@@ -5,10 +5,18 @@
     <div class="container">
       <div class="flex flex-col gap-8 lg:flex-row justify-between items-center">
         <div class="w-full lg:w-1/3 text-block">
-          <h3 class="mb-4">Today's <strong>best</strong> secured <br /> loan <strong>rates</strong></h3>
-          <p class="text-base lg:text-md">Check every lender on the market and over 400 products</p>
-          <a href="#" class="btn btn-pink min-w-[267px] my-3 lg:mb-6">Compare Loans</a>
-          <p class="text-base">Rates based on a £250,000 purchase with a £25,000 deposit over 35 years, fixed for 5 years and on a repayment basis. Rates include those only available on New Build Homes</p>
+          @if($title)
+            <div class="mb-4">{!! $title !!}</div>
+          @endif
+          @if($sub_title)
+            <p class="text-base lg:text-md">{{ $sub_title }}</p>
+          @endif
+          @if($link)
+            <a href="{{ $link['url'] }}" target="{{ !empty($link['target']) ? $link['target'] : '_self'  }}" class="btn btn-pink min-w-[267px] my-3 lg:mb-6">{{$link['title']}}</a>
+          @endif
+          @if($description)
+            <p class="text-base">{{ $description }}</p>
+          @endif
         </div>
         <div class="w-full lg:w-5/12">
           <div class="flex justify-between items-center py-3 lg:py-8 border-b border-blue-50">
