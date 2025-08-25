@@ -5,11 +5,19 @@
     <div class="container">
       <h3 class="mb-6 lg:mb-12 text-center lg:text-left">How we can <strong>help</strong></h3>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8">
-        <div class="items-center text-center p-7 lg:p-8 rounded-2xl bg-gray-200 flex flex-col min-h-[207px] lg:min-h-[273px]">
+        <div class="items-start p-7 lg:p-8 rounded-2xl bg-gray-200 flex flex-col min-h-[207px] lg:min-h-[273px]">
           <div class="h-[44px] lg:h-[72px] flex items-center justify-center mb-4 lg:mb-7">
             <img src="http://loanablemarketing.local/wp-content/uploads/2025/08/Icon.svg" alt="" class="max-h-full">
           </div>
-          <p class="font-bold text-[21px] lg:text-2xl">Secured loans</p>
+          <p class="font-bold text-[21px] lg:text-[32px] leading-9">Secured <br/> loans</p>
+          <div class="text-block mt-6 grid-text">
+            <p>Your loan, your choice:</p>
+            <ul>
+              <li><strong>Competitive rates and terms</strong></li>
+              <li><strong>Loans from £10K</strong></li>
+              <li><strong>Repayment over 3- 30 years</strong></li>
+            </ul>
+          </div>
           <a href="#" class="custom-underline uppercase mt-auto">learn More</a>
         </div>
         <div class="items-center text-center p-7 lg:p-8 rounded-2xl bg-gray-200 flex flex-col min-h-[207px] lg:min-h-[273px]">

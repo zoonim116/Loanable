@@ -5,6 +5,7 @@
 @import "./blocks/_hero-block.css";
 @import "./blocks/_color-grid-block.css";
 @import "./blocks/_faq.css";
+@import "./blocks/_feefo.css";
 @source "../views/";
 @source "../../app/";
 
@@ -60,6 +61,10 @@ h1,h2,h3,h4 {
   }
 }
 
+strong {
+  font-family: var(--font-bold);
+}
+
 h1 {
   @apply text-4xl lg:text-5xl xl:text-[64px] font-bold;
   line-height: 1.1;
@@ -76,6 +81,16 @@ h3 {
 
     svg {
       @apply inline-block;
+    }
+  }
+
+  ul {
+    margin-top: 30px;
+    margin-left: 30px;
+    list-style-type: disc;
+
+    li {
+      margin-bottom: 10px;
     }
   }
 }
@@ -118,5 +133,15 @@ h3 {
     @media (width < 48rem) {
       font-size: var(--text-base);
     }
+  }
+}
+
+.grid-text {
+  p {
+    @apply text-base lg:text-[21px];
+  }
+
+  ul {
+    @apply text-base lg:text-medium;
   }
 }

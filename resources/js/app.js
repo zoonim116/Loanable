@@ -4,7 +4,9 @@ import.meta.glob([
 ]);
 
 document.addEventListener('DOMContentLoaded', () => {
-  // jQuery('.mobile-menu_btn').on('click', function () {
-  //   jQuery('body').toggleClass('show-menu');
-  // });
+  document.querySelectorAll('.faq-item_title').forEach((elem) => {
+    elem.addEventListener('click', function () {
+      this.parentNode.classList.toggle('active');
+    });
+  })
 });
