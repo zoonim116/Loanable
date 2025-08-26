@@ -70,7 +70,7 @@
   </div>
 </footer>
 @if($cta_link)
-  <div class="bottom-bar fixed-btn flex md:hidden justify-center p-4 bg-white border-t border-blue-50 fixed bottom-0 left-0 w-full z-10">
+  <div class="bottom-bar fixed-btn flex md:hidden justify-center p-4 bg-white border-t border-blue-50 fixed bottom-0 left-0 w-full z-10 transition">
     <a href="{{ $cta_link['url'] }}" target="{{ !empty($cta_link['target']) ? $cta_link['target'] : '_self'  }}" class="btn btn-pink font-bold">{{ $cta_link['title'] }}</a>
   </div>
 @endif
