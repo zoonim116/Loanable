@@ -13,7 +13,7 @@
               {!! $subtitle !!}
             @endif
             @if($link)
-                <a href="{{ $link['url'] }}" target="{{ !empty($link['target']) ? $link['target'] : '_self'  }}" class="btn btn-pink mt-4 lg:min-w-[271px]">{{ $link['title'] }}</a>
+                <a href="{{ $link['url'] }}" target="{{ !empty($link['target']) ? $link['target'] : '_self'  }}" class="btn btn-pink mt-4 lg:min-w-[271px] font-bold">{{ $link['title'] }}</a>
             @endif
           </div>
         </div>

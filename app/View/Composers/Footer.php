@@ -24,6 +24,7 @@ class Footer extends Composer
             'footer_text_col_2' => get_field('footer_text_col_2', 'option') ?? false,
             'email' => get_field('email', 'option') ?? false,
             'phone' => get_field('footer_phone', 'option') ?? false,
+            'cta_link' => get_field('cta_link', 'option') ?? false,
         ];
     }
 }

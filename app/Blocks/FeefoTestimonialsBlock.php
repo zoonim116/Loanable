@@ -189,6 +189,6 @@ class FeefoTestimonialsBlock extends Block
 
     public function getClasses(): string
     {
-        return 'wp-block-feefo-testimonials-block  py-10';
+        return 'wp-block-feefo-testimonials-block  py-10 overflow-hidden';
     }
 }

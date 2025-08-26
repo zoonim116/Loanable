@@ -41,6 +41,9 @@ class ThemeSettings extends Field
                 ->addText('feefo_code', [
                     'label' => 'Feefo Code',
                 ])
+                ->addLink('cta_link', [
+                    'label' => 'CTA Link',
+                ])
             ->addTab('footer', [
                 'label' => 'Footer',
             ])

@@ -1,5 +1,5 @@
 .btn {
-  @apply w-full md:w-auto no-underline text-md inline-flex justify-between items-center py-3 px-5 rounded-full bg-blue-600 text-white transition-all duration-300 ease-out hover:opacity-90 hover:shadow-lg hover:-translate-y-0.5;
+  @apply w-full md:w-auto no-underline text-md inline-flex justify-between items-center py-3 px-6 font-bold rounded-full bg-blue-600 text-white transition-all duration-300 ease-out hover:opacity-90 hover:shadow-lg hover:-translate-y-0.5;
 
   &:hover {
     @apply text-white;
@@ -9,7 +9,8 @@
   }
   &:after {
     content: url('data:image/svg+xml,<svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.49998 5L16.5 5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12.4615 9.03836L16.5 4.99989L12.4615 0.961426" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>');
-    @apply ml-4 lg:ml-16 transition-transform duration-300 ease-out;
+    @apply ml-4 lg:ml-14 lg:mr-2 relative transition-transform duration-300 ease-out;
+    top: 1px;
   }
 }
 

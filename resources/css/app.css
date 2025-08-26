@@ -144,3 +144,11 @@ h3 {
     @apply text-base lg:text-medium;
   }
 }
+
+.fixed-btn {
+  transform: translateY(100px);
+
+  &.active {
+    transform: translateY(0);
+  }
+}
