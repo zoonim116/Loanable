@@ -2,9 +2,9 @@
   <section {{ $attributes }}>
 @endunless
 
-    <div class="container">
+    <div class="container container-lg">
       <div class="flex items-center justify-between gap-8">
-        <div class="lg:w-1/3 text-block text-base lg:text-medium">
+        <div class="lg:w-1/3 text-block text-md lg:text-medium">
           @if($title)
             <h1 class="mb-4 lg:mb-6">{!! $title !!}</h1>
           @endif
@@ -31,7 +31,7 @@
             <a href="{{ $button_link['url'] }}" target="{{ !empty($button_link['target']) ? $button_link['target'] : '_self'  }}" class="btn btn-pink my-4 lg:mt-6">{{ $button_link['title'] }}</a>
           @endif
           @if($after_button_text)
-            <p class="text-base">
+            <p class="text-md lg:text-base">
               <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg" class="relative -top-1">
                 <path d="M7 8.375V6.625C7 4.692 8.567 3.125 10.5 3.125C12.433 3.125 14 4.692 14 6.625V8.375M7.175 18.875H13.825C14.8051 18.875 15.2951 18.875 15.6695 18.6843C15.9988 18.5165 16.2665 18.2488 16.4343 17.9195C16.625 17.5451 16.625 17.0551 16.625 16.075V11.175C16.625 10.1949 16.625 9.70486 16.4343 9.33052C16.2665 9.00123 15.9988 8.73352 15.6695 8.56574C15.2951 8.375 14.8051 8.375 13.825 8.375H7.175C6.19491 8.375 5.70486 8.375 5.33052 8.56574C5.00123 8.73352 4.73352 9.00123 4.56574 9.33052C4.375 9.70486 4.375 10.1949 4.375 11.175V16.075C4.375 17.0551 4.375 17.5451 4.56574 17.9195C4.73352 18.2488 5.00123 18.5165 5.33052 18.6843C5.70486 18.875 6.19491 18.875 7.175 18.875Z" stroke="#3A4969" stroke-linecap="round"/>
               </svg>

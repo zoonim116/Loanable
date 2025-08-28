@@ -8,12 +8,12 @@
           </a>
         @endif
         @if($footer_text_col_1)
-          <div class="text-block text-sm mt-6 leading-relaxed">
+          <div class="text-block text-base lg:text-sm mt-6 leading-relaxed">
             {!! $footer_text_col_1 !!}
           </div>
         @endif
       </div>
-      <div class="w-full lg:w-1/5 lg:w-1/6 text-block text-base pt-2">
+      <div class="w-full lg:w-1/5 lg:w-1/6 text-block text-md lg:text-base pt-2">
         @if($footer_text_col_2)
         <p>
           {!! $footer_text_col_2 !!}

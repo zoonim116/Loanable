@@ -9,13 +9,13 @@
             <div class="mb-4">{!! $title !!}</div>
           @endif
           @if($sub_title)
-            <p class="text-base lg:text-md">{{ $sub_title }}</p>
+            <p class="text-md">{{ $sub_title }}</p>
           @endif
           @if($link)
             <a href="{{ $link['url'] }}" target="{{ !empty($link['target']) ? $link['target'] : '_self'  }}" class="btn btn-pink min-w-[267px] my-3 lg:mb-6">{{$link['title']}}</a>
           @endif
           @if($description)
-            <p class="text-base">{{ $description }}</p>
+            <p class="text-md lg:text-base">{{ $description }}</p>
           @endif
         </div>
         <div class="w-full lg:w-5/12">

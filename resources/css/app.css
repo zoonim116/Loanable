@@ -13,7 +13,7 @@
   --font-bold: "Bariol Bold", sans-serif;
 
   --color-slate-700: #3a4969;
-  --color-blue-50: rgba(58, 73, 105, 0.5);
+  --color-blue-50: rgba(58, 73, 105, 0.2);
   --color-blue-600: #315fc3;
   --color-pink-600: #E2287B;
   --color-black-400: rgba(5, 7, 31, 0.4);
@@ -42,7 +42,13 @@ body {
   padding-right: 20px;
 
   @media (width >= 96rem) {
-    max-width: 85rem;
+    max-width: 1055px;
+  }
+
+  &.container-lg {
+    @media (width >= 96rem) {
+      max-width: 85rem;
+    }
   }
 }
 
@@ -130,18 +136,18 @@ h3 {
     font-size: 21px;
 
     @media (width < 48rem) {
-      font-size: var(--text-base);
+      font-size: var(--text-md);
     }
   }
 }
 
 .grid-text {
   p {
-    @apply text-base lg:text-[19px];
+    @apply text-md lg:text-[19px];
   }
 
   ul {
-    @apply text-base lg:text-medium;
+    @apply text-md lg:text-medium;
   }
 }
 

@@ -15,7 +15,7 @@
           @forelse($cards as $card)
             <div @class([
                 $card['bg_color'],
-                'text-white p-8 lg:p-12 lg:pt-14 text-base lg:text-medium rounded-2xl',
+                'text-white p-8 lg:p-12 lg:pt-14 text-md lg:text-medium rounded-2xl',
                 'lg:min-h-[580px]' => count($cards) == 3
             ])>
               <div class="flex flex-col h-full">
