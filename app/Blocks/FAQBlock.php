@@ -113,7 +113,7 @@ class FAQBlock extends Block
         'full_height' => false,
         'anchor' => false,
         'mode' => true,
-        'multiple' => false,
+        'multiple' => true,
         'jsx' => false,
         'color' => [
             'background' => false,

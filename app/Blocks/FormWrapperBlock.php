@@ -5,21 +5,21 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use Log1x\AcfComposer\Builder;
 
-class PrivilegesBlock extends Block
+class FormWrapperBlock extends Block
 {
     /**
      * The block name.
      *
      * @var string
      */
-    public $name = 'Privileges Block';
+    public $name = 'Form Wrapper Block';
 
     /**
      * The block description.
      *
      * @var string
      */
-    public $description = 'Privileges List';
+    public $description = 'A FF wrapper';
 
     /**
      * The block category.
@@ -92,41 +92,6 @@ class PrivilegesBlock extends Block
     public $align_content = '';
 
     /**
-     * The default block spacing.
-     *
-     * @var array
-     */
-    public $spacing = [
-        'padding' => null,
-        'margin' => null,
-    ];
-
-    /**
-     * The supported block features.
-     *
-     * @var array
-     */
-    public $supports = [
-        'align' => false,
-        'align_text' => false,
-        'align_content' => false,
-        'full_height' => false,
-        'anchor' => false,
-        'mode' => true,
-        'multiple' => true,
-        'jsx' => false,
-        'color' => [
-            'background' => false,
-            'text' => false,
-            'gradients' => false,
-        ],
-        'spacing' => [
-            'padding' => false,
-            'margin' => false,
-        ],
-    ];
-
-    /**
      * The block styles.
      *
      * @var array
@@ -135,22 +100,12 @@ class PrivilegesBlock extends Block
 
 
     /**
-     * The block template.
-     *
-     * @var array
-     */
-    public $template = [
-        'core/heading' => ['placeholder' => 'Hello World'],
-        'core/paragraph' => ['placeholder' => 'Welcome to the Privileges Block block.'],
-    ];
-
-    /**
      * Data to be passed to the block before rendering.
      */
     public function with(): array
     {
         return [
-            'items' => $this->items(),
+            'shortcode' => $this->shortcode(),
         ];
     }
 
@@ -159,22 +114,14 @@ class PrivilegesBlock extends Block
      */
     public function fields(): array
     {
-        $fields = Builder::make('privileges_block');
+        $fields = Builder::make('form_wrapper_block');
 
         $fields
-            ->addRepeater('items', [
-                'label' => 'Item',
-                'button_label' => 'Add Item',
-                'min' => 1,
-                'max' => 3
-            ])
-                ->addImage('icon', [
-                    'label' => 'Icon',
-                ])
-                ->addText('text', [
-                    'label' => 'Text',
-                ])
-            ->endRepeater();
+            ->addText('shortcode', [
+                'label' => 'Shortcode',
+                'instructions' => 'Enter shortcode like [your_shortcode]',
+                'required' => true,
+            ]);
 
         return $fields->build();
     }
@@ -184,9 +131,9 @@ class PrivilegesBlock extends Block
      *
      * @return array
      */
-    public function items()
+    public function shortcode()
     {
-        return get_field('items') ?? [];
+        return get_field('shortcode') ?? false;
     }
 
     /**
@@ -197,10 +144,5 @@ class PrivilegesBlock extends Block
     public function assets(array $block): void
     {
         //
-    }
-
-    public function getClasses(): string
-    {
-        return 'wp-block-privileges-block py-6 lg:py-12 border-y lg:border-y-0 border-blue-50';
     }
 }
