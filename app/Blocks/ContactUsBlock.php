@@ -200,4 +200,9 @@ class ContactUsBlock extends Block
     {
         //
     }
+
+    public function getClasses(): string
+    {
+        return 'wp-block-contact-us-block py-10 lg:py-20 bg-gray-200';
+    }
 }

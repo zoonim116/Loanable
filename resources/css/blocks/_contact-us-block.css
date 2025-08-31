@@ -1,0 +1,7 @@
+.wp-block-contact-us-block {
+  .text-block {
+    p:not(:last-child) {
+      @apply mb-4;
+    }
+  }
+}

@@ -200,4 +200,9 @@ class LoanDataBlock extends Block
     {
         //
     }
+
+    public function getClasses(): string
+    {
+        return 'wp-block-loan-data-block py-10';
+    }
 }

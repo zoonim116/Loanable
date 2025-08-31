@@ -1,5 +1,5 @@
 <header class="banner relative z-10 border-b bg-white border-blue-50 pt-6 pb-4 lg:py-6">
-  <div class="container">
+  <div class="container container-lg">
     <div class="w-full flex flex-wrap lg:flex-nowrap gap-4 lg:gap-8 items-center">
       <a class="brand max-w-[120px] lg:max-w-40" href="{{ home_url('/') }}">
         <img src="{{$logo['url']}}" alt="{!! $siteName !!}">

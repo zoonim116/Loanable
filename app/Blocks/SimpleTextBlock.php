@@ -5,21 +5,21 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use Log1x\AcfComposer\Builder;
 
-class DigitalStoresBlock extends Block
+class SimpleTextBlock extends Block
 {
     /**
      * The block name.
      *
      * @var string
      */
-    public $name = 'Digital Stores Block';
+    public $name = 'Simple Text Block';
 
     /**
      * The block description.
      *
      * @var string
      */
-    public $description = 'A Links to store';
+    public $description = 'Block with text';
 
     /**
      * The block category.
@@ -153,7 +153,7 @@ class DigitalStoresBlock extends Block
      */
     public $template = [
         'core/heading' => ['placeholder' => 'Hello World'],
-        'core/paragraph' => ['placeholder' => 'Welcome to the Digital Stores Block block.'],
+        'core/paragraph' => ['placeholder' => 'Welcome to the Simple Text Block block.'],
     ];
 
     /**
@@ -171,7 +171,7 @@ class DigitalStoresBlock extends Block
      */
     public function fields(): array
     {
-        $fields = Builder::make('digital_stores_block');
+        $fields = Builder::make('simple_text_block');
 
         $fields
             ->addRepeater('items')
@@ -203,6 +203,6 @@ class DigitalStoresBlock extends Block
 
     public function getClasses(): string
     {
-        return 'wp-block-digital-stores-block py-8 lg:pt-20';
+        return 'wp-block-simple-text-block text-slate-700 text-center pt-8 pb-0 lg:pb-8 lg:pt-20 text-md lg:text-medium';
     }
 }

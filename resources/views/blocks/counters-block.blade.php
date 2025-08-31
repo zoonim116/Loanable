@@ -2,7 +2,7 @@
   <section {{ $attributes }}>
 @endunless
 
-    <div class="container">
+    <div class="container container-lg">
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 xl:gap-20 text-center">
         @if($items)
           @forelse ($items as $item)

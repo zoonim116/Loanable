@@ -2,7 +2,7 @@
   <section {{ $attributes }}>
 @endunless
 
-    <div class="container">
+    <div class="container container-lg">
       @if($title)
         <h3 class="mb-8 lg:mb-14 text-center">{!! $title !!}</h3>
       @endif

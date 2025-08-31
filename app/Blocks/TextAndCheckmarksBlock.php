@@ -200,4 +200,9 @@ class TextAndCheckmarksBlock extends Block
     {
         //
     }
+
+    public function getClasses(): string
+    {
+        return 'wp-block-text-checkmarks-block pb-10 lg:pt-14 lg:pb-20 text-center lg:text-left';
+    }
 }
