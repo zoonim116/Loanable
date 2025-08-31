@@ -64,7 +64,7 @@ class Data8
                 // Validate email
                 if (!empty($data[$emailFieldName])) {
                     $email = $data[$emailFieldName];
-                    $emailValidationResult = validate_fields_with_data_8_api('https://webservices.data-8.co.uk/EmailValidation/IsValid.json', array(
+                    $emailValidationResult = $this->validate_fields_with_data_8_api('https://webservices.data-8.co.uk/EmailValidation/IsValid.json', array(
                         'email' => $email,
                         'level' => 'address',
                     ));
@@ -76,22 +76,22 @@ class Data8
                                 ]
                             ], 422);
                         }
-                        //  Validate Phone No.
-                        if (!empty($data[$phoneFieldName])) {
-                            $phone = $data[$phoneFieldName];
-                            $phoneValidationResult = validate_fields_with_data_8_api('https://webservices.data-8.co.uk/PhoneValidation/IsValid.json', array(
-                                'telephoneNumber' => $phone,
-                                'defaultCountry' => "UK",
-                            ));
 
-                            if (isset($phoneValidationResult['Result']['ValidationResult']) && $phoneValidationResult['Result']['ValidationResult'] !== 'Valid') {
-                                wp_send_json([
-                                    'errors' => [
-                                        $phoneFieldName => $wrong_phone
-                                    ]
-                                ], 422);
-                            }
-                        }
+                    }
+                }
+                //  Validate Phone No.
+                if (!empty($data[$phoneFieldName])) {
+                    $phone = $data[$phoneFieldName];
+                    $phoneValidationResult = $this->validate_fields_with_data_8_api('https://webservices.data-8.co.uk/PhoneValidation/IsValid.json', array(
+                        'telephoneNumber' => $phone,
+                        'defaultCountry' => "UK",
+                    ));
+                    if (isset($phoneValidationResult['Result']['ValidationResult']) && $phoneValidationResult['Result']['ValidationResult'] !== 'Valid') {
+                        wp_send_json([
+                            'errors' => [
+                                $phoneFieldName => $wrong_phone
+                            ]
+                        ], 422);
                     }
                 }
             }
@@ -136,13 +136,13 @@ class Data8
             if (in_array($form_id, $ff_forms)) {
                 $result = [];
                 if ($type === 'phone') {
-                    $result = validate_fields_with_data_8_api('https://webservices.data-8.co.uk/PhoneValidation/IsValid.json', array(
+                    $result = $this->validate_fields_with_data_8_api('https://webservices.data-8.co.uk/PhoneValidation/IsValid.json', array(
                         'telephoneNumber' => $value,
                         'defaultCountry' => "UK",
                     ));
                 }
                 if ($type === 'email') {
-                    $result = validate_fields_with_data_8_api('https://webservices.data-8.co.uk/EmailValidation/IsValid.json', array(
+                    $result = $this->validate_fields_with_data_8_api('https://webservices.data-8.co.uk/EmailValidation/IsValid.json', array(
                         'email' => $value,
                         'level' => 'address',
                     ));
@@ -154,7 +154,6 @@ class Data8
                         ]
                     ], 422);
                 }
-
             }
         }
     }
@@ -162,7 +161,6 @@ class Data8
     //  Mind Web Tree || Added submenu navigation to manage Data 8 settings
     public function add_navigation_under_fluent_form()
     {
-//        die(var_dump($this->data_8_navigation()));
         add_submenu_page(
             'fluent_forms',
             'Data 8 settings',
@@ -256,6 +254,7 @@ class Data8
         register_rest_route('data_8/v1', 'save', array(
             'methods' => 'POST',
             'callback' => array($this, 'data_8_save'),
+            'permission_callback' => '__return_true'
         ));
     }
 
