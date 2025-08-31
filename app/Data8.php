@@ -76,7 +76,6 @@ class Data8
                                 ]
                             ], 422);
                         }
-
                     }
                 }
                 //  Validate Phone No.
@@ -86,6 +85,7 @@ class Data8
                         'telephoneNumber' => $phone,
                         'defaultCountry' => "UK",
                     ));
+                    die(var_dump($phoneValidationResult));
                     if (isset($phoneValidationResult['Result']['ValidationResult']) && $phoneValidationResult['Result']['ValidationResult'] !== 'Valid') {
                         wp_send_json([
                             'errors' => [
@@ -176,7 +176,8 @@ class Data8
     {
         $saved_settings = get_option('data_8_settings', array());
         // Retrieve individual settings
-        $api_key = isset($saved_settings['api_key']) ? esc_attr($saved_settings['api_key']) : '';
+        $username = isset($saved_settings['username']) ? esc_attr($saved_settings['username']) : '';
+        $password = isset($saved_settings['password']) ? esc_attr($saved_settings['password']) : '';
         $validate = isset($saved_settings['validate']) && $saved_settings['validate'] == 1 ? 'checked="checked"' : '';
         $wrong_email = isset($saved_settings['wrong_email']) ? esc_attr($saved_settings['wrong_email']) : 'Please enter a valid email';
         $wrong_phone = isset($saved_settings['wrong_phone']) ? esc_attr($saved_settings['wrong_phone']) : 'Please enter a valid phone';
@@ -194,8 +195,12 @@ class Data8
 
                 <table class="form-table">
                     <tr>
-                        <th scope="row"><label for="api_key">Api Key</label></th>
-                        <td><input type="text" name="api_key" id="api_key" value="<?php echo $api_key; ?>" class="regular-text"></td>
+                        <th scope="row"><label for="username">Username</label></th>
+                        <td><input type="text" name="username" id="username" value="<?php echo $username; ?>" class="regular-text"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="password">Password</label></th>
+                        <td><input type="password" name="password" id="password" value="<?php echo $password; ?>" class="regular-text"></td>
                     </tr>
                     <tr>
                         <th scope="row">Validation</th>
@@ -261,18 +266,20 @@ class Data8
     public function data_8_save($request)
     {
         // Retrieve submitted values
-        $api_key = sanitize_text_field($request->get_param('api_key'));
+        $username = sanitize_text_field($request->get_param('username'));
+        $password = sanitize_text_field($request->get_param('password'));
         $wrong_email = sanitize_text_field($request->get_param('wrong_email'));
         $wrong_phone = sanitize_text_field($request->get_param('wrong_phone'));
         $validate = $request->get_param('validate') !== null ? 1 : 0;
         $ff_forms = $request->get_param('ff_forms') ?? [];
         // Example validation
-        if (empty($api_key)) {
+        if (empty($username) || empty($password)) {
             // Display error message
-            return wp_send_json_error(['message' => 'Please fill <code>API key</code> field.'], 422);
+            return wp_send_json_error(['message' => 'Please fill <code>username</code>  and <code>password</code> field.'], 422);
         } else {
             $settings = array(
-                'api_key' => $api_key,
+                'username' => $username,
+                'password' => $password,
                 'validate' => $validate,
                 'wrong_email' => $wrong_email,
                 'wrong_phone' => $wrong_phone,

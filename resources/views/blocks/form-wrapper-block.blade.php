@@ -1,5 +1,5 @@
 @unless ($block->preview)
-  <div {{ $attributes }}>
+  <section {{ $attributes }}>
 @endunless
     @if($shortcode)
       <div class="container">
@@ -12,5 +12,5 @@
 </div>
 
 @unless ($block->preview)
-  </div>
+  </section>
 @endunless

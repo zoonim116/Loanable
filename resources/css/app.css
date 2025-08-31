@@ -6,6 +6,7 @@
 @import "./blocks/_color-grid-block.css";
 @import "./blocks/_faq.css";
 @import "./blocks/_contact-us-block.css";
+@import "./blocks/_form-block.css";
 @source "../views/";
 @source "../../app/";
 
