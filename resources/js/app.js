@@ -4,6 +4,8 @@ import.meta.glob([
 ]);
 
 
+import './cookie.js';
+
 function bottomBarInit() {
   const elementIsVisibleInViewport = (el) => {
     const { top, height } = el.getBoundingClientRect();
@@ -36,6 +38,5 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 window.onscroll = function() {
-  console.log("Window is scrolling!");
   bottomBarInit();
 };
