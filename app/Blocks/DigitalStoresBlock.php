@@ -180,17 +180,17 @@ class DigitalStoresBlock extends Block
      *
      * @return array
      */
-    public function items(): array
+    public function items()
     {
         return get_field('items') ?? [];
     }
 
-    public function title(): string
+    public function title()
     {
         return get_field('title') ?? false;
     }
 
-    public function subtitle(): string
+    public function subtitle()
     {
         return get_field('subtitle') ?? false;
     }
