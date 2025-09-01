@@ -131,20 +131,7 @@ class ContactUsBlock extends Block
      *
      * @var array
      */
-    public $styles = ['light', 'dark'];
-
-    /**
-     * The block preview example data.
-     *
-     * @var array
-     */
-    public $example = [
-        'items' => [
-            ['item' => 'Item one'],
-            ['item' => 'Item two'],
-            ['item' => 'Item three'],
-        ],
-    ];
+    public $styles = [];
 
     /**
      * The block template.
@@ -162,7 +149,10 @@ class ContactUsBlock extends Block
     public function with(): array
     {
         return [
-            'items' => $this->items(),
+            'title' => $this->title(),
+            'subtitle' => $this->subtitle(),
+            'container_1_text' => $this->container_1_text(),
+            'container_2_text' => $this->container_2_text(),
         ];
     }
 
@@ -174,9 +164,19 @@ class ContactUsBlock extends Block
         $fields = Builder::make('contact_us_block');
 
         $fields
-            ->addRepeater('items')
-                ->addText('item')
-            ->endRepeater();
+            ->addWysiwyg('title', [
+                'label' => 'Title',
+                'instructions' => 'Mark a part of text as bold to color in accent color',
+            ])
+            ->addText('subtitle', [
+                'label' => 'Subtitle',
+            ])
+            ->addWysiwyg('container_1_text', [
+                'label' => '1 Container content',
+            ])
+            ->addWysiwyg('container_2_text', [
+                'label' => '2 Container content',
+            ]);
 
         return $fields->build();
     }
@@ -186,9 +186,23 @@ class ContactUsBlock extends Block
      *
      * @return array
      */
-    public function items()
+    public function title()
     {
-        return get_field('items') ?: $this->example['items'];
+        return get_field('title') ?? [];
+    }
+
+    public function subtitle()
+    {
+        return get_field('subtitle') ?? [];
+    }
+
+    public function container_1_text()
+    {
+        return get_field('container_1_text') ?? [];
+    }
+    public function container_2_text()
+    {
+        return get_field('container_2_text') ?? [];
     }
 
     /**

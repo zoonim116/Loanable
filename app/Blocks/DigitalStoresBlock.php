@@ -131,30 +131,7 @@ class DigitalStoresBlock extends Block
      *
      * @var array
      */
-    public $styles = ['light', 'dark'];
-
-    /**
-     * The block preview example data.
-     *
-     * @var array
-     */
-    public $example = [
-        'items' => [
-            ['item' => 'Item one'],
-            ['item' => 'Item two'],
-            ['item' => 'Item three'],
-        ],
-    ];
-
-    /**
-     * The block template.
-     *
-     * @var array
-     */
-    public $template = [
-        'core/heading' => ['placeholder' => 'Hello World'],
-        'core/paragraph' => ['placeholder' => 'Welcome to the Digital Stores Block block.'],
-    ];
+    public $styles = [];
 
     /**
      * Data to be passed to the block before rendering.
@@ -162,6 +139,8 @@ class DigitalStoresBlock extends Block
     public function with(): array
     {
         return [
+            'title' => $this->title(),
+            'subtitle' => $this->subtitle(),
             'items' => $this->items(),
         ];
     }
@@ -174,8 +153,23 @@ class DigitalStoresBlock extends Block
         $fields = Builder::make('digital_stores_block');
 
         $fields
-            ->addRepeater('items')
-                ->addText('item')
+            ->addText('title', [
+                'label' => 'Title',
+            ])
+            ->addText('subtitle', [
+                'label' => 'Subtitle',
+            ])
+            ->addRepeater('items', [
+                'label' => 'Items',
+                'button_label' => 'Add Item',
+                'max' => 2
+            ])
+                ->addLink('link', [
+                    'label' => 'Link',
+                ])
+                ->addImage('image', [
+                    'label' => 'Image',
+                ])
             ->endRepeater();
 
         return $fields->build();
@@ -186,9 +180,19 @@ class DigitalStoresBlock extends Block
      *
      * @return array
      */
-    public function items()
+    public function items(): array
     {
-        return get_field('items') ?: $this->example['items'];
+        return get_field('items') ?? [];
+    }
+
+    public function title(): string
+    {
+        return get_field('title') ?? false;
+    }
+
+    public function subtitle(): string
+    {
+        return get_field('subtitle') ?? false;
     }
 
     /**

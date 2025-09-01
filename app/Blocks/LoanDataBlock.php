@@ -131,30 +131,8 @@ class LoanDataBlock extends Block
      *
      * @var array
      */
-    public $styles = ['light', 'dark'];
+    public $styles = [];
 
-    /**
-     * The block preview example data.
-     *
-     * @var array
-     */
-    public $example = [
-        'items' => [
-            ['item' => 'Item one'],
-            ['item' => 'Item two'],
-            ['item' => 'Item three'],
-        ],
-    ];
-
-    /**
-     * The block template.
-     *
-     * @var array
-     */
-    public $template = [
-        'core/heading' => ['placeholder' => 'Hello World'],
-        'core/paragraph' => ['placeholder' => 'Welcome to the Loan Data Block block.'],
-    ];
 
     /**
      * Data to be passed to the block before rendering.
@@ -162,7 +140,15 @@ class LoanDataBlock extends Block
     public function with(): array
     {
         return [
-            'items' => $this->items(),
+            'amount_icon' => $this->amount_icon(),
+            'amount_title' => $this->amount_title(),
+            'amount_value' => $this->amount_value(),
+            'purpose_icon' => $this->purpose_icon(),
+            'purpose_title' => $this->purpose_title(),
+            'purpose_value' => $this->purpose_value(),
+            'duration_icon' => $this->duration_icon(),
+            'duration_title' => $this->duration_title(),
+            'duration_value' => $this->duration_value(),
         ];
     }
 
@@ -174,9 +160,24 @@ class LoanDataBlock extends Block
         $fields = Builder::make('loan_data_block');
 
         $fields
-            ->addRepeater('items')
-                ->addText('item')
-            ->endRepeater();
+            ->addImage('amount_icon', [
+                'label' => 'Loan amount icon',
+            ])
+            ->addText('amount_title', [
+                'label' => 'Loan amount title',
+            ])
+            ->addImage('purpose_icon', [
+                'label' => 'Loan purpose icon',
+            ])
+            ->addText('purpose_title', [
+                'label' => 'Loan purpose title',
+            ])
+            ->addImage('duration_icon', [
+                'label' => 'Loan duration icon',
+            ])
+            ->addText('duration_title', [
+                'label' => 'Loan duration title',
+            ]);
 
         return $fields->build();
     }
@@ -186,9 +187,59 @@ class LoanDataBlock extends Block
      *
      * @return array
      */
-    public function items()
+    public function amount_icon()
     {
-        return get_field('items') ?: $this->example['items'];
+        return get_field('amount_icon') ?? false;
+    }
+
+    public function amount_title()
+    {
+        return get_field('amount_title') ?? false;
+    }
+
+    public function purpose_icon()
+    {
+        return get_field('purpose_icon') ?? false;
+    }
+
+    public function purpose_title()
+    {
+        return get_field('purpose_title') ?? false;
+    }
+
+    public function duration_icon()
+    {
+        return get_field('duration_icon') ?? false;
+    }
+
+    public function duration_title()
+    {
+        return get_field('duration_title') ?? false;
+    }
+
+    public function amount_value()
+    {
+        if (isset($_GET['amount']) && is_numeric($_GET['amount'])) {
+            return number_format($_GET['amount'], 0, '.', ',');
+        }
+        return false;
+    }
+
+    public function purpose_value()
+    {
+        if (isset($_GET['purpose'])) {
+            return htmlspecialchars($_GET['purpose']);
+        }
+        return false;
+    }
+
+    public function duration_value()
+    {
+        if (isset($_GET['duration']) && is_numeric($_GET['duration'])) {
+            $duration = $_GET['duration'];
+            return $duration . ' ' . \Illuminate\Support\Str::plural('year', $duration);
+        }
+        return false;
     }
 
     /**

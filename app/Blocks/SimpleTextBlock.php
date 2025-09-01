@@ -131,30 +131,7 @@ class SimpleTextBlock extends Block
      *
      * @var array
      */
-    public $styles = ['light', 'dark'];
-
-    /**
-     * The block preview example data.
-     *
-     * @var array
-     */
-    public $example = [
-        'items' => [
-            ['item' => 'Item one'],
-            ['item' => 'Item two'],
-            ['item' => 'Item three'],
-        ],
-    ];
-
-    /**
-     * The block template.
-     *
-     * @var array
-     */
-    public $template = [
-        'core/heading' => ['placeholder' => 'Hello World'],
-        'core/paragraph' => ['placeholder' => 'Welcome to the Simple Text Block block.'],
-    ];
+    public $styles = [];
 
     /**
      * Data to be passed to the block before rendering.
@@ -162,7 +139,8 @@ class SimpleTextBlock extends Block
     public function with(): array
     {
         return [
-            'items' => $this->items(),
+            'title' => $this->title(),
+            'subtitle' => $this->subtitle()
         ];
     }
 
@@ -174,9 +152,13 @@ class SimpleTextBlock extends Block
         $fields = Builder::make('simple_text_block');
 
         $fields
-            ->addRepeater('items')
-                ->addText('item')
-            ->endRepeater();
+            ->addWysiwyg('title', [
+                'label' => 'Title',
+                'instructions' => 'Mark a part of text as bold to color in accent color',
+            ])
+            ->addWysiwyg('subtitle', [
+                'label' => 'Subtitle',
+            ]);
 
         return $fields->build();
     }
@@ -186,9 +168,14 @@ class SimpleTextBlock extends Block
      *
      * @return array
      */
-    public function items()
+    public function title()
     {
-        return get_field('items') ?: $this->example['items'];
+        return get_field('title') ?? false;
+    }
+
+    public function subtitle()
+    {
+        return get_field('subtitle') ?? false;
     }
 
     /**

@@ -131,30 +131,7 @@ class TextAndCheckmarksBlock extends Block
      *
      * @var array
      */
-    public $styles = ['light', 'dark'];
-
-    /**
-     * The block preview example data.
-     *
-     * @var array
-     */
-    public $example = [
-        'items' => [
-            ['item' => 'Item one'],
-            ['item' => 'Item two'],
-            ['item' => 'Item three'],
-        ],
-    ];
-
-    /**
-     * The block template.
-     *
-     * @var array
-     */
-    public $template = [
-        'core/heading' => ['placeholder' => 'Hello World'],
-        'core/paragraph' => ['placeholder' => 'Welcome to the Text And Checkmarks Block block.'],
-    ];
+    public $styles = [];
 
     /**
      * Data to be passed to the block before rendering.
@@ -162,6 +139,9 @@ class TextAndCheckmarksBlock extends Block
     public function with(): array
     {
         return [
+            'title' => $this->title(),
+            'description' => $this->description(),
+            'subtitle' => $this->subtitle(),
             'items' => $this->items(),
         ];
     }
@@ -174,21 +154,48 @@ class TextAndCheckmarksBlock extends Block
         $fields = Builder::make('text_and_checkmarks_block');
 
         $fields
-            ->addRepeater('items')
-                ->addText('item')
+            ->addWysiwyg('title', [
+                'label' => 'Title',
+                'instructions' => 'Mark a part of text as bold to color in accent color',
+            ])
+            ->addWysiwyg('description', [
+                'label' => 'Description',
+            ])
+            ->addTextarea('subtitle', [
+                'label' => 'Subtitle',
+                'rows' => 2,
+                'new_lines' => 'br',
+            ])
+            ->addRepeater('items', [
+                'max' => 3,
+                'button_label' => 'Add Item',
+            ])
+                ->addText('title')
+                ->addText('description')
             ->endRepeater();
 
         return $fields->build();
     }
 
-    /**
-     * Retrieve the items.
-     *
-     * @return array
-     */
+
     public function items()
     {
-        return get_field('items') ?: $this->example['items'];
+        return get_field('items') ?: [];
+    }
+
+    public function title()
+    {
+        return get_field('title') ?? false;
+    }
+
+    public function description()
+    {
+        return get_field('description') ?? false;
+    }
+
+    public function subtitle()
+    {
+        return get_field('subtitle') ?? false;
     }
 
     /**
