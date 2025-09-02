@@ -68,6 +68,22 @@
       <p>Copyright © Loanable | Secured Loan Specialists {{date('Y')}}. All Rights Reserved.</p>
     </div>
   </div>
+  @if($contact_form_id)
+    <div class="modal micromodal-slide" id="contact-form" aria-hidden="true">
+      <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="contact-form-title" >
+          <header class="modal__header">
+            <h2 class="modal__title" id="contact-form-title">{{ $contact_form_title }}</h2>
+            <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+          </header>
+          <div class="modal__content" id="contact-form-content">
+            {!!  do_shortcode('[fluentform id="'.$contact_form_id.'"]') !!}
+          </div>
+        </div>
+      </div>
+    </div>
+  @endif
+  <a href="#contact-form">Modal</a>
 </footer>
 @if($cta_link)
   <div class="bottom-bar fixed-btn flex md:hidden justify-center p-4 bg-white border-t border-blue-50 fixed bottom-0 left-0 w-full z-10 transition">

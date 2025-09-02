@@ -5,6 +5,7 @@ import.meta.glob([
 
 
 import './cookie.js';
+import MicroModal from 'micromodal';
 
 function bottomBarInit() {
   const elementIsVisibleInViewport = (el) => {
@@ -35,6 +36,13 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   bottomBarInit();
+
+  document.querySelectorAll('[href="#contact-form"]').forEach((elem) => {
+    elem.addEventListener('click', function (e) {
+      e.preventDefault();
+      MicroModal.show('contact-form');
+    });
+  })
 });
 
 window.onscroll = function() {

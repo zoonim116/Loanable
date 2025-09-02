@@ -26,6 +26,12 @@ class ThemeSettings extends Field
      */
     public function fields(): array
     {
+        $formApi = fluentFormApi('forms')->forms();
+        $forms = $formApi['data'];
+        $forms_data = [];
+        foreach ($forms as $form) {
+                $forms_data['ff_'.$form->id] = $form->title;
+        }
         $fields = Builder::make('theme_settings');
 
         $fields
@@ -100,8 +106,15 @@ class ThemeSettings extends Field
                     'width' => '50%'
                 ],
                 'new_lines' => 'br'
+            ])
+            ->addTab('common', [
+                'label' => 'General Settings',
+            ])
+            ->addSelect('contact_form', [
+                'label' => 'FF Contact Form',
+                'choices' => $forms_data,
+                'return_format' => 'value',
             ]);
-
 
         return $fields->build();
     }

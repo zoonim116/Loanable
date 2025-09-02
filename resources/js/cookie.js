@@ -51,7 +51,7 @@ function findField(form, fieldName) {
         fieldName.charAt(0).toUpperCase() + fieldName.slice(1).toLowerCase(),
         fieldName.charAt(0).toLowerCase() + fieldName.slice(1).toUpperCase()
     ];
-    
+
     // Try exact matches first
     for (var i = 0; i < variations.length; i++) {
         var field = form.find('input[name="' + variations[i] + '"]');
@@ -60,7 +60,7 @@ function findField(form, fieldName) {
             return field;
         }
     }
-    
+
     // Try case-insensitive attribute contains as fallback
 //     for (var i = 0; i < variations.length; i++) {
 //         var field = form.find('input[name*="' + variations[i] + '" i]');
@@ -69,7 +69,7 @@ function findField(form, fieldName) {
 //             return field;
 //         }
 //     }
-    
+
     return null;
 }
 
@@ -85,22 +85,22 @@ function populateHiddenFields() {
         'fbclid',
         'msclkid'
     ];
-    
+
     var forms = jQuery('.frm-fluent-form');
     console.log('Found forms:', forms.length);
-    
+
 //     forms.each(function() {
 //         var form = jQuery(this);
 //         var formId = form.attr('data-form_id');
 //         console.log('Processing form:', formId);
 // 		form.append('<input type="hidden" name="test_field" value="111111"');
-        
+
 //         parameters.forEach(function(param) {
 //             var cookieValue = getCookie('wp_' + param.toLowerCase());
 //             if (cookieValue) {
 //                 var existingField = findField(form, param);
 //                 console.log('Processing parameter:', param, 'Cookie value:', cookieValue, 'Field found:', !!existingField);
-                
+
 //                 if (existingField) {
 //                     existingField.val(cookieValue);
 //                     console.log('Updated field value:', {
@@ -116,22 +116,17 @@ function populateHiddenFields() {
 function initializeFormHandler() {
     console.log('Initializing form handler');
     //populateHiddenFields();
-    
+
     jQuery(document).on('fluentform_init', function() {
         console.log('Fluent Form init event triggered');
         //populateHiddenFields();
     });
-    
+
     jQuery(document).on('ff_step_changed', function(event, data) {
         console.log('Form step changed, repopulating fields');
         //setTimeout(populateHiddenFields, 100);
     });
-    
+
     //setTimeout(populateHiddenFields, 1000);
     //setTimeout(populateHiddenFields, 2000);
 }
-
-jQuery(document).ready(function() {
-    console.log('Document ready, starting initialization');
-    /// initializeFormHandler();
-});

@@ -12,6 +12,13 @@ class Footer extends Composer
 
     public function with()
     {
+        $formObj = false;
+        if (get_field('contact_form', 'option')) {
+            $formId = str_replace('ff_', '', get_field('contact_form', 'option'));
+            $formApi = fluentFormApi('forms');
+            $formObj = $formApi->find($formId = $formId);
+        }
+
         return [
             'logo' => get_field('footer_logo', 'option') ?? false,
             'socials' => [
@@ -25,6 +32,8 @@ class Footer extends Composer
             'email' => get_field('email', 'option') ?? false,
             'phone' => get_field('footer_phone', 'option') ?? false,
             'cta_link' => get_field('cta_link', 'option') ?? false,
+            'contact_form_id' => $formObj ? $formObj->id : false,
+            'contact_form_title' => $formObj ? $formObj->title : false,
         ];
     }
 }

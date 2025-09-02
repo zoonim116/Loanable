@@ -85,6 +85,7 @@ class Data8
                         'telephoneNumber' => $phone,
                         'defaultCountry' => "UK",
                     ));
+                    die(var_dump($phoneValidationResult));
                     if (isset($phoneValidationResult['Result']['ValidationResult']) && $phoneValidationResult['Result']['ValidationResult'] !== 'Valid') {
                         wp_send_json([
                             'errors' => [
