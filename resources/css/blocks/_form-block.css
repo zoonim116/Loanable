@@ -65,6 +65,10 @@
         position: relative;
         top: 5px;
         margin-left: 3px;
+
+        @media (width < 48rem) {
+          margin-right: 1px;
+        }
       }
     }
 
@@ -75,12 +79,20 @@
         position: relative;
         top: 5px;
         margin-right: 3px;
+
+        @media (width < 48rem) {
+          margin-right: 1px;
+        }
       }
     }
   }
 
   .ff-btn {
     @apply rounded-full pr-4 pt-2  pl-6 pb-3 relative font-bold text-md lg:min-w-[140px] text-center cursor-pointer;
+
+    @media (width < 48rem) {
+      @apply px-3;
+    }
   }
 
   .ff_step_nav_last {
@@ -154,5 +166,26 @@
 
   .ff_step_nav_last {
     @apply mt-0;
+  }
+}
+
+.fluentform .ff-el-group.ff_list_buttons .ff-el-form-check label>span {
+  @media only screen and (max-width: 768px) {
+    border: 0 !important;
+  }
+}
+
+.fluentform .ff-el-group.ff_list_buttons .ff-el-form-check {
+    display: flex !important;
+    align-items: center;
+}
+
+.ff-el-input--content {
+  .ff_input-group {
+    flex-wrap: nowrap !important;
+
+    .ff-el-form-control {
+      width: calc(100% - 33px) !important;
+    }
   }
 }

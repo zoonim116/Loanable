@@ -19,12 +19,14 @@
   border-radius: 4px;
   overflow-y: auto;
   box-sizing: border-box;
-}
 
-.modal__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  .fluentform {
+    padding: 0;
+  }
+
+  .ff-btn.ff-btn-submit {
+    border-radius: 200px;
+  }
 }
 
 .modal__title {
@@ -145,4 +147,14 @@
 .micromodal-slide .modal__container,
 .micromodal-slide .modal__overlay {
   will-change: transform;
+}
+
+.ff-el-group {
+  h2 {
+    @apply text-[25px] lg:text-[32px] font-bold mb-2 leading-tight outline-0;
+  }
+
+  p {
+    @apply text-md lg:text-medium;
+  }
 }
