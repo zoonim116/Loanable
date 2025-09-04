@@ -82,7 +82,6 @@
       </div>
     </div>
   @endif
-  <a href="#contact-form">Modal</a>
 </footer>
 @if($cta_link)
   <div class="bottom-bar fixed-btn flex md:hidden justify-center p-4 bg-white border-t border-blue-50 fixed bottom-0 left-0 w-full z-10 transition">

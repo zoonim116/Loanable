@@ -121,6 +121,7 @@
 
     .ff-el-form-check-label {
       @apply p-2 block h-full w-full;
+
     }
 
     label {
@@ -189,3 +190,12 @@
     }
   }
 }
+
+.ff-default .ff-el-form-check {
+  display: flex;
+  align-items: center;
+  label.ff-el-form-check-label {
+    margin-bottom: 0px !important;
+  }
+}
+

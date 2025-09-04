@@ -8,6 +8,7 @@
 @import "./blocks/_contact-us-block.css";
 @import "./blocks/_form-block.css";
 @import "./blocks/_modal.css";
+@import "./blocks/_counter-block.css";
 @source "../views/";
 @source "../../app/";
 
