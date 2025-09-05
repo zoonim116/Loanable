@@ -24,25 +24,32 @@ function bottomBarInit() {
   }
 }
 
-// function onClassChange(element, callback) {
-//   const observer = new MutationObserver((mutations) => {
-//     mutations.forEach((mutation) => {
-//       if (
-//         mutation.type === 'attributes' &&
-//         mutation.attributeName === 'class'
-//       ) {
-//         callback(mutation.target);
-//       }
-//     });
-//   });
-//   observer.observe(element, { attributes: true });
-//   return observer.disconnect;
-// }
+const handleStepsChange = (elem, attrName) => {
+  if (elem.style.getPropertyValue('display').trim() !== 'none') {
+    if (elem.previousSibling.nodeName !== 'LI') {
+      document.querySelector('.ff-el-progress-bar span').textContent = '0%';
+      document.querySelector('.ff-el-progress-bar').style.width = '0%';
+    }
+  }
+}
+
+const observer = new MutationObserver((mutationList) => {
+  for (const mutation of mutationList) {
+    console.log(mutation);
+    if (mutation.type === 'childList') {
+      mutation.addedNodes.forEach(handleNewNode);
+      mutation.removedNodes.forEach(handleRemovedNode);
+    } else if (mutation.type === 'attributes') {
+      handleStepsChange(mutation.target, mutation.attributeName);
+    }
+  }
+});
 
 document.addEventListener('DOMContentLoaded', () => {
-  // onClassChange(document.querySelector('[data-name="step_start-3_20"]'), (node) => {
-  //     console.log(node);
-  // });
+  observer.observe(document.querySelector('.ff-el-progress-title'),
+    { subtree: true, attributes: true }
+  );
+
   document.querySelector('.mobile-menu_btn').addEventListener('click', () => {
     document.querySelector('body').classList.toggle('show-menu');
   });
@@ -66,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
   jQuery('#fluentform_3 .ff-btn-submit').on('click', function(e) {
     e.preventDefault();
     jQuery.ajax({
-      url: '/wp/wp-admin/admin-ajax.php',
+      url: '/wp-admin/admin-ajax.php',
       type: 'POST',
       data: {
         action: 'data_8_validate',
