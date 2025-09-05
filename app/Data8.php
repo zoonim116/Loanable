@@ -81,6 +81,9 @@ class Data8
                 //  Validate Phone No.
                 if (!empty($data[$phoneFieldName])) {
                     $phone = $data[$phoneFieldName];
+                    if (!str_starts_with($phone, '+44')) {
+                        $phone = '+44'.$phone;
+                    }
                     $phoneValidationResult = $this->validate_fields_with_data_8_api('https://webservices.data-8.co.uk/PhoneValidation/IsValid.json', array(
                         'telephoneNumber' => $phone,
                         'defaultCountry' => "UK",
@@ -124,32 +127,46 @@ class Data8
         $data_8_settings = get_option('data_8_settings');
         $ff_forms = json_decode($data_8_settings['ff_forms']);
         $form_id = isset($_POST['form_id']) ? $_POST['form_id'] : -1;
-        $type = isset($_POST['type']) ? $_POST['type'] : false;
-        $value = isset($_POST['value']) ? $_POST['value'] : false;
-
-        if ($data_8_settings && isset($data_8_settings['validate']) && $data_8_settings['validate'] == 1 && count($ff_forms) > 0 && $type && $value) {
-
+        $email = isset($_POST['email']) ? $_POST['email'] : false;
+        $phone = isset($_POST['phone']) ? $_POST['phone'] : false;
+        if ($data_8_settings && isset($data_8_settings['validate']) && $data_8_settings['validate'] == 1 && count($ff_forms) > 0) {
             $wrong_email = isset($data_8_settings['wrong_email']) ? esc_attr($data_8_settings['wrong_email']) : 'Please enter a valid email';
             $wrong_phone = isset($data_8_settings['wrong_phone']) ? esc_attr($data_8_settings['wrong_phone']) : 'Please enter a valid phone';
-
             if (in_array($form_id, $ff_forms)) {
-                $result = [];
-                if ($type === 'phone') {
-                    $result = $this->validate_fields_with_data_8_api('https://webservices.data-8.co.uk/PhoneValidation/IsValid.json', array(
-                        'telephoneNumber' => $value,
-                        'defaultCountry' => "UK",
-                    ));
-                }
-                if ($type === 'email') {
+                if ($email) {
                     $result = $this->validate_fields_with_data_8_api('https://webservices.data-8.co.uk/EmailValidation/IsValid.json', array(
-                        'email' => $value,
+                        'email' => $email,
                         'level' => 'address',
                     ));
+                    if ($result['Result'] !== 'Valid') {
+                        wp_send_json([
+                            'errors' => [
+                                'email' => $wrong_email,
+                            ]
+                        ], 422);
+                    }
                 }
-                if ($result['Result'] !== 'Valid') {
+                if ($phone) {
+                    if (!str_starts_with($phone, '+44')) {
+                        $phone = '+44'.$phone;
+                    }
+
+                    $result = $this->validate_fields_with_data_8_api('https://webservices.data-8.co.uk/PhoneValidation/IsValid.json', array(
+                        'telephoneNumber' => $phone,
+                        'defaultCountry' => "UK",
+                    ));
+
+                    if ($result['Result']['ValidationResult'] !== 'Valid') {
+                        wp_send_json([
+                            'errors' => [
+                                'phone' =>  $wrong_phone,
+                            ]
+                        ], 422);
+                    }
+                } else {
                     wp_send_json([
                         'errors' => [
-                            $type => $type === 'phone' ? $wrong_phone : $wrong_email
+                            'phone' => 'This field is required',
                         ]
                     ], 422);
                 }
@@ -287,6 +304,11 @@ class Data8
             update_option('data_8_settings', $settings);
             return wp_send_json_success(['message' => __('Data 8 settings saved successfully!')], 200);
         }
+    }
+
+    public function validate_phone($errorMessage, $field, $formData, $fields, $form)
+    {
+
     }
 
     public function init()

@@ -104,7 +104,8 @@
   }
 
   .ff-el-form-check {
-    @apply rounded-lg border border-gray-200 min-h-[50px] text-center mb-3;
+    @apply rounded-lg border  min-h-[50px] text-center mb-3;
+    border-color: #DEDEDE;
 
     input[type="radio"], input[type="checkbox"] {
       font-size: 16px;
@@ -144,6 +145,10 @@
         }
       }
     }
+  }
+
+  .fluentform .ff-btn.ff-working:after {
+    background-color: transparent !important;
   }
 
   .ff-el-group.ff_list_buttons .ff-el-form-check {

@@ -18,7 +18,7 @@
           </div>
         @endif
         @if($container_2_text)
-          <div class="w-full lg:w-1/3  p-7 lg:py-8 lg:px-5 rounded-2xl bg-pink-600 text-white text-center text-medium lg:text-2xl font-bold flex flex-col justify-center lg:min-h-[204px]">
+          <div class="w-full lg:w-1/3  p-7 lg:py-8 lg:px-5 rounded-2xl bg-pink-600 text-white text-left text-medium lg:text-2xl font-bold flex flex-col justify-center lg:min-h-[204px]">
             {!! $container_2_text !!}
           </div>
         @endif

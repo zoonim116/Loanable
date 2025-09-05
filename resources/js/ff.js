@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   });
 
   var current_step = 1;
-    if (window.fluent_forms_global_var === undefined) {
+  if (window.fluent_forms_global_var === undefined) {
   	return false;
   }
   var step_percent = 100 / window.fluent_forms_global_var.form.questions.length;
@@ -103,14 +103,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
   	if (jQuery('.q-form.f-fade-in-up .ffc_q_header .f-text, .q-form.f-fade-in-down .ffc_q_header .f-text').length > 0) {
   		currentQuestion = jQuery('.q-form.f-fade-in-up .ffc_q_header .f-text span:first-child, .q-form.f-fade-in-down .ffc_q_header .f-text span:first-child').text().replace('*', '');
   	}
-  	
+
   	var active_step = window.fluent_forms_global_var.form.questions.findIndex((q) => {
   		if (currentQuestion === null) {
   			return q.title === null;
   		} else {
   			return q.title?.includes(currentQuestion);
   		}
-  		
+
   	}) + 1;
   	if (active_step !== current_step) {
   		current_step = active_step;
@@ -152,12 +152,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 
 	  ///
-	  	
+
 	  var propertyInput = jQuery('.annual_income input');
 	  if (propertyInput.length > 0 && jQuery('.annual_income-custom').length === 0) {
 	  	  propertyInput.after('<div class="annual_income-prefix">£</div><input type="text" class="annual_income-custom" placeholder="'+propertyInput.attr('placeholder')+'"/>');
 	  	  jQuery(document).on('keyup', '.annual_income-custom', function(e) {
-			// debugger;
 		  	var inp_value = jQuery('.annual_income-custom').val();
 		  	jQuery('.annual_income input[name=annual_income]').val(inp_value.replace(',', ''));
 		  	document.querySelector('[name="annual_income"]').dispatchEvent(new Event('change'));
@@ -190,7 +189,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   });
 
   jQuery('.borrow-custom').mask('000,000', { reverse: true });
-  
+
   if ($_progressBarWrapper.length) {
   	$_progressBarWrapper.width(step_percent + '%');
   }
@@ -205,42 +204,42 @@ document.addEventListener("DOMContentLoaded", (event) => {
 	   			if (patt.test(emailValue) && jQuery('.q-form.field-email.is-validating').length === 0) {
 	   				// const val = document.querySelector('.q-form.field-email input').value;
 		  			const form_id = jQuery('.frm-fluent-form').data('form_id');
-			 		jQuery.ajax({
-						url: window.ElementorProFrontendConfig.ajaxurl,
-						type: 'POST',
-						data: {
-							action: 'data_8_validate',
-							type: 'email',
-							value: emailValue,
-							form_id: form_id
-						},
-						beforeSend: function () {
-							jQuery('.q-form.field-email').addClass('is-validating');
-							jQuery('.q-form.field-email input').removeClass('valid_8');
-							jQuery('.q-form.field-email .ff_conv_input .ffc_question').after('<div class="validation_status">Email validation<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><style>.spinner_qM83{animation:spinner_8HQG 1.05s infinite}.spinner_oXPr{animation-delay:.1s}.spinner_ZTLf{animation-delay:.2s}@keyframes spinner_8HQG{0%,57.14%{animation-timing-function:cubic-bezier(0.33,.66,.66,1);transform:translate(0)}28.57%{animation-timing-function:cubic-bezier(0.33,0,.66,.33);transform:translateY(-6px)}100%{transform:translate(0)}}</style><circle class="spinner_qM83" cx="4" cy="12" r="3"/><circle class="spinner_qM83 spinner_oXPr" cx="12" cy="12" r="3"/><circle class="spinner_qM83 spinner_ZTLf" cx="20" cy="12" r="3"/></svg></div>');
-						},
-		 				success: function( data ) {
-							jQuery('.q-form.field-email .custom-error-alert').remove();
-							skipEnter = false;
-			  				document.querySelector('.q-form.field-email .f-enter')?.style.setProperty("visibility", "visible", "important");
-			  				jQuery('.q-form.field-email input').addClass('valid_8');
-						},
-						error: function(data) {
-							jQuery('.q-form.field-email .ff_conv_input .custom-error-alert').remove();
-							jQuery('.q-form.field-email .ff_conv_input .ffc_question').after('<div class="f-invalid custom-error-alert" role="alert" aria-live="assertive">'+data.responseJSON.errors.email+'</div>');
-							jQuery('.q-form.field-email input').removeClass('valid_8');
-							document.querySelector('.q-form.field-email .f-enter')?.style.setProperty("visibility", "hidden", "important");
-							console.log('Error', data.responseJSON.errors.email);
-						},
-						complete: function() {
-							jQuery('.q-form.field-email .ff_conv_input .validation_status').remove();
-							jQuery('.q-form.field-email').removeClass('is-validating');
-						}
-					});
+            jQuery.ajax({
+              url: window.ElementorProFrontendConfig.ajaxurl,
+              type: 'POST',
+              data: {
+                action: 'data_8_validate',
+                type: 'email',
+                value: emailValue,
+                form_id: form_id
+              },
+              beforeSend: function () {
+                jQuery('.q-form.field-email').addClass('is-validating');
+                jQuery('.q-form.field-email input').removeClass('valid_8');
+                jQuery('.q-form.field-email .ff_conv_input .ffc_question').after('<div class="validation_status">Email validation<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><style>.spinner_qM83{animation:spinner_8HQG 1.05s infinite}.spinner_oXPr{animation-delay:.1s}.spinner_ZTLf{animation-delay:.2s}@keyframes spinner_8HQG{0%,57.14%{animation-timing-function:cubic-bezier(0.33,.66,.66,1);transform:translate(0)}28.57%{animation-timing-function:cubic-bezier(0.33,0,.66,.33);transform:translateY(-6px)}100%{transform:translate(0)}}</style><circle class="spinner_qM83" cx="4" cy="12" r="3"/><circle class="spinner_qM83 spinner_oXPr" cx="12" cy="12" r="3"/><circle class="spinner_qM83 spinner_ZTLf" cx="20" cy="12" r="3"/></svg></div>');
+              },
+              success: function( data ) {
+                jQuery('.q-form.field-email .custom-error-alert').remove();
+                skipEnter = false;
+                  document.querySelector('.q-form.field-email .f-enter')?.style.setProperty("visibility", "visible", "important");
+                  jQuery('.q-form.field-email input').addClass('valid_8');
+              },
+              error: function(data) {
+                jQuery('.q-form.field-email .ff_conv_input .custom-error-alert').remove();
+                jQuery('.q-form.field-email .ff_conv_input .ffc_question').after('<div class="f-invalid custom-error-alert" role="alert" aria-live="assertive">'+data.responseJSON.errors.email+'</div>');
+                jQuery('.q-form.field-email input').removeClass('valid_8');
+                document.querySelector('.q-form.field-email .f-enter')?.style.setProperty("visibility", "hidden", "important");
+                console.log('Error', data.responseJSON.errors.email);
+              },
+              complete: function() {
+                jQuery('.q-form.field-email .ff_conv_input .validation_status').remove();
+                jQuery('.q-form.field-email').removeClass('is-validating');
+              }
+            });
 	   			}
   	  		}, 1000);
 	  });
   // }
 
-  // console.log(jQuery('.f-enter'));
+
 });
