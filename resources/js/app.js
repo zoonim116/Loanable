@@ -46,9 +46,11 @@ const observer = new MutationObserver((mutationList) => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  observer.observe(document.querySelector('.ff-el-progress-title'),
-    { subtree: true, attributes: true }
-  );
+  if (document.querySelector('.ff-el-progress-title')) {
+    observer.observe(document.querySelector('.ff-el-progress-title'),
+      {subtree: true, attributes: true}
+    );
+  }
 
   document.querySelector('.mobile-menu_btn').addEventListener('click', () => {
     document.querySelector('body').classList.toggle('show-menu');
