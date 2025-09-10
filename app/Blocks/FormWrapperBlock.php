@@ -148,6 +148,6 @@ class FormWrapperBlock extends Block
 
     public function getClasses(): string
     {
-        return 'wp-block-form-wrapper-block  py-10 lg:py-20 bg-blue-600';
+        return 'wp-block-form-wrapper-block  py-10 lg:py-20 bg-blue-300';
     }
 }
