@@ -46,6 +46,12 @@ const observer = new MutationObserver((mutationList) => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+  if (document.querySelector('.loader-screen')) {
+    setTimeout(() => {
+      document.querySelector('.loader-screen').classList.add('hidden');
+    }, 5000);
+  }
+
   if (document.querySelector('.ff-el-progress-title')) {
     observer.observe(document.querySelector('.ff-el-progress-title'),
       {subtree: true, attributes: true}

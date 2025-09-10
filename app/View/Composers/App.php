@@ -22,4 +22,9 @@ class App extends Composer
     {
         return get_bloginfo('name', 'display');
     }
+
+    public function mainLogo()
+    {
+        return get_field('logo', 'option') ?? false;
+    }
 }
