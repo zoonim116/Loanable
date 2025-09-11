@@ -15,7 +15,8 @@ class Header extends Composer
         return [
             'logo' => get_field('logo', 'option') ?? false,
             'phone' => get_field('header_phone', 'option') ?? false,
-            'feefo_code' => get_field('feefo_code', 'option') ?? false,
+            'feefo_img_mobile' => get_field('feefo_img_mobile', 'option') ?? false,
+            'feefo_img_desktop' => get_field('feefo_img_desktop', 'option') ?? false,
         ];
     }
 }

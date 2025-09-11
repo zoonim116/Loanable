@@ -44,8 +44,17 @@ class ThemeSettings extends Field
                 ->addText('header_phone', [
                     'label' => 'Phone',
                 ])
-                ->addText('feefo_code', [
-                    'label' => 'Feefo Code',
+                ->addImage('feefo_img_desktop', [
+                    'label' => 'Feefo Badge desktop',
+                    'wrapper' => [
+                        'width' => '50%',
+                    ]
+                ])
+                ->addImage('feefo_img_mobile', [
+                    'label' => 'Feefo badge mobile',
+                    'wrapper' => [
+                        'width' => '50%',
+                    ]
                 ])
                 ->addLink('cta_link', [
                     'label' => 'CTA Link',
