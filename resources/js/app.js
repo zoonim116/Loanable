@@ -109,14 +109,10 @@ document.addEventListener('DOMContentLoaded', () => {
       },
     });
   });
-
-  if ('ontouchstart' in window || navigator.maxTouchPoints) {
-    $(".header-nav .menu-item-has-children > a").on("click", function(e) {
-      e.preventDefault();
-      $(".header-nav .sub-menu").not($(this).siblings(".sub-menu")).removeClass("sub-menu_show");
-      $(this).siblings(".sub-menu").toggleClass("sub-menu_show");
-    });
-  }
+  jQuery(".header-nav .menu-item-has-children > a").on("click", function(e) {
+    e.preventDefault();
+    jQuery(this).next().toggleClass("sub-menu_show");
+  });
 });
 
 window.onscroll = function() {
