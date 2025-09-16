@@ -166,6 +166,7 @@ class LoanRatesBlock extends Block
             'sub_title' => $this->get_sub_title(),
             'description' => $this->get_description(),
             'link' => $this->get_link(),
+            'content' => $this->get_content(),
         ];
     }
 
@@ -189,6 +190,9 @@ class LoanRatesBlock extends Block
             ])
             ->addTextarea('description', [
                 'label' => 'Under button text',
+            ])
+            ->addWysiwyg('content', [
+                'label' => 'Right column content',
             ]);
 
         return $fields->build();
@@ -212,6 +216,11 @@ class LoanRatesBlock extends Block
     public function get_description()
     {
         return get_field('description') ?? false;
+    }
+
+    public function get_content()
+    {
+        return get_field('content') ?? false;
     }
 
     /**

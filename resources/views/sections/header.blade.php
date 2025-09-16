@@ -7,7 +7,7 @@
       <div class="banner-bottom relative order-1 w-full lg:w-auto lg:order-none lg:ml-auto flex items-center justify-center gap-4 lg:gap-8 pt-4 lg:pt-0">
         @if($feefo_img_desktop)
           <a href="https://www.feefo.com/en-GB/reviews/loanable">
-            <img class="hidden lg:block w-[270px] h-[55px]" src="{{ $feefo_img_desktop['url'] }}" alt="{{ $feefo_img_desktop['alt'] }}">
+            <img class="hidden lg:block w-[240px] h-[55px]" src="{{ $feefo_img_desktop['url'] }}" alt="{{ $feefo_img_desktop['alt'] }}">
           </a>
         @endif
         @if($feefo_img_mobile)

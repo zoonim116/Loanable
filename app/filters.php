@@ -21,3 +21,4 @@ add_filter('upload_mimes', function ($mimes) {
     $mimes['webp'] = 'image/webp';
     return $mimes;
 });
+

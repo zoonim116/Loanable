@@ -27,4 +27,10 @@ class App extends Composer
     {
         return get_field('logo', 'option') ?? false;
     }
+
+    public function hideCtaButton()
+    {
+        global $post;
+        return !(is_null(get_field('hide_cta', $post->ID)) || !get_field('hide_cta', $post->ID));
+    }
 }
