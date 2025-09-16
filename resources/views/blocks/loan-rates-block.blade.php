@@ -3,7 +3,7 @@
 @endunless
 
     <div class="container">
-      <div class="flex flex-col gap-8 lg:flex-row justify-between">
+      <div class="flex flex-col gap-8 lg:flex-row justify-between items-center">
         <div class="w-full lg:w-1/2 text-block">
           @if($title)
             <div class="mb-4">{!! $title !!}</div>
@@ -18,7 +18,7 @@
             <p class="text-md lg:text-base">{{ $description }}</p>
           @endif
         </div>
-        <div class="w-full lg:w-1/2">
+        <div class="w-full lg:w-1/2 text-md lg:text-[21px]">
           {!! $content !!}
         </div>
       </div>
