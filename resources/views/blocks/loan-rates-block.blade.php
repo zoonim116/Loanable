@@ -18,7 +18,7 @@
             <p class="text-md lg:text-base">{{ $description }}</p>
           @endif
         </div>
-        <div class="w-full lg:w-1/2 text-md lg:text-[21px]">
+        <div class="w-full lg:w-1/3 text-md lg:text-[21px]">
           {!! $content !!}
         </div>
       </div>
