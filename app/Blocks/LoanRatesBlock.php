@@ -235,6 +235,6 @@ class LoanRatesBlock extends Block
 
     public function getClasses(): string
     {
-        return 'wp-block-loan-rates-block  py-10 bg-gray-200 lg:bg-white';
+        return 'wp-block-loan-rates-block  py-10 bg-white';
     }
 }
