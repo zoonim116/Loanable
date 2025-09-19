@@ -172,3 +172,11 @@ h3, .h3 {
     transform: translateY(0);
   }
 }
+
+.ff_cond_v {
+  & + .ff-inner_submit_container {
+    .ff-btn-submit {
+      display: none;
+    }
+  }
+}
