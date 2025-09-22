@@ -16,7 +16,7 @@ function setCookie(name, value) {
 }
 
 // Updated parameters list to include FBCLID and MSCLKID
-var parameters = ['cid', 'k', 'c', 'gclid', 'fbclid', 'msclkid'];
+var parameters = ['cid', 'k', 'c', 'gclid', 'fbclid', 'msclkid', 'source', 'medium', 'kw', 'content', 'cv'];
 
 console.log('Starting parameter check...');
 // Store parameters in cookies
@@ -83,50 +83,58 @@ function populateHiddenFields() {
         'c',
         'gclid',
         'fbclid',
-        'msclkid'
+        'msclkid',
+        'source',
+        'medium',
+        'kw',
+        'content',
+        'cv'
     ];
 
     var forms = jQuery('.frm-fluent-form');
-    console.log('Found forms:', forms.length);
+    // console.log('Found forms:', forms.length);
 
-//     forms.each(function() {
-//         var form = jQuery(this);
-//         var formId = form.attr('data-form_id');
-//         console.log('Processing form:', formId);
-// 		form.append('<input type="hidden" name="test_field" value="111111"');
+    forms.each(function() {
+        var form = jQuery(this);
+        var formId = form.attr('data-form_id');
+        // console.log('Processing form:', formId);
 
-//         parameters.forEach(function(param) {
-//             var cookieValue = getCookie('wp_' + param.toLowerCase());
-//             if (cookieValue) {
-//                 var existingField = findField(form, param);
-//                 console.log('Processing parameter:', param, 'Cookie value:', cookieValue, 'Field found:', !!existingField);
+        parameters.forEach(function(param) {
+            var cookieValue = getCookie('wp_' + param.toLowerCase());
+            if (cookieValue) {
+                var existingField = findField(form, param);
+                // console.log('Processing parameter:', param, 'Cookie value:', cookieValue, 'Field found:', !!existingField);
 
-//                 if (existingField) {
-//                     existingField.val(cookieValue);
-//                     console.log('Updated field value:', {
-//                         name: existingField.attr('name'),
-//                         value: existingField.val()
-//                     });
-//                 }
-//             }
-//         });
-//     });
+                if (existingField) {
+                    existingField.val(cookieValue);
+                    // console.log('Updated field value:', {
+                    //     name: existingField.attr('name'),
+                    //     value: existingField.val()
+                    // });
+                }
+            }
+        });
+    });
 }
+
+jQuery(document).on('fluentform_init', function() {
+  // console.log('Fluent Form init event triggered');
+  populateHiddenFields();
+});
+
+setTimeout(populateHiddenFields, 1000);
 
 function initializeFormHandler() {
     console.log('Initializing form handler');
-    //populateHiddenFields();
+    // populateHiddenFields();
 
-    jQuery(document).on('fluentform_init', function() {
-        console.log('Fluent Form init event triggered');
-        //populateHiddenFields();
-    });
+
 
     jQuery(document).on('ff_step_changed', function(event, data) {
         console.log('Form step changed, repopulating fields');
         //setTimeout(populateHiddenFields, 100);
     });
 
-    //setTimeout(populateHiddenFields, 1000);
+    //
     //setTimeout(populateHiddenFields, 2000);
 }
