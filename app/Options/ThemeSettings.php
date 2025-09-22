@@ -123,6 +123,14 @@ class ThemeSettings extends Field
                 'label' => 'FF Contact Form',
                 'choices' => $forms_data,
                 'return_format' => 'value',
+            ])
+            ->addTextarea('header_code', [
+                'label' => 'Head Code',
+                'instructions' => 'Code to paste in <head></head> ',
+            ])
+            ->addTextarea('body_code', [
+                'label' => 'Body code',
+                'instructions' => 'Code to paste in <body></body> ',
             ]);
 
         return $fields->build();

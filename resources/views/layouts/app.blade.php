@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @php(do_action('get_header'))
     @php(wp_head())
+    {!! $headCode !!}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
   </head>
 
   <body @php(body_class())>
     @php(wp_body_open())
+    {!! $bodyCode !!}
 
     <div id="app">
       <a class="sr-only focus:not-sr-only" href="#main">

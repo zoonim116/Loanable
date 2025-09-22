@@ -33,4 +33,14 @@ class App extends Composer
         global $post;
         return !(is_null(get_field('hide_cta', $post->ID)) || !get_field('hide_cta', $post->ID));
     }
+
+    public function headCode()
+    {
+        return get_field('header_code', 'option') ?? false;
+    }
+
+    public function bodyCode()
+    {
+        return get_field('body_code', 'option') ?? false;
+    }
 }
