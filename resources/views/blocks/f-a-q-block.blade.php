@@ -21,8 +21,8 @@
           @if($items)
             @foreach($items as $item)
               <div class="faq-item {{ $loop->first ? 'active' : '' }} transition-all border rounded-4xl py-4 px-6">
-                <div class="faq-item_title flex justify-between gap-2 font-bold cursor-pointer text-medium lg:text-md">
-                  {{$item['title']}}
+                <div class="faq-item_title items-center flex-wrap flex justify-between gap-2 font-bold cursor-pointer text-medium lg:text-md">
+                  <span class="faq-item_title_text">{{$item['title']}}</span>
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="12" cy="12" r="12" fill="#3A4969"/>
                     <path d="M15.4282 10.7656L12.2844 14.0665C12.2476 14.1069 12.2034 14.139 12.1545 14.161C12.1055 14.1829 12.0529 14.1942 11.9996 14.1942C11.9464 14.1942 11.8937 14.1829 11.8448 14.161C11.7959 14.139 11.7517 14.1069 11.7148 14.0665L8.57108 10.7656" fill="#3A4969"/>

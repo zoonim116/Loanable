@@ -9,9 +9,14 @@
 
   .faq-item_title {
     @apply cursor-pointer;
+
     svg {
       @apply transition;
     }
+  }
+
+  .faq-item_title_text {
+    width: calc(100% - 50px);
   }
 
   &.active {
