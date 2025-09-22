@@ -11,6 +11,12 @@
 .fluentform {
   @apply bg-white pt-6 pb-2 px-4 lg:p-8 lg:pb-4;
 
+  .ff_submit_btn_wrapper {
+    &:after {
+      background: rgba(255, 255, 255, 0);
+    }
+  }
+
   .ff-step-header {
     @apply mb-14;
 
@@ -145,10 +151,6 @@
         }
       }
     }
-  }
-
-  .fluentform .ff-btn.ff-working:after {
-    background-color: transparent !important;
   }
 
   .ff-el-group.ff_list_buttons .ff-el-form-check {

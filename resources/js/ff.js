@@ -24,48 +24,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 	var itemToWatch = document.querySelector('.q-form.field-email');
 	var isValidEmail = false;
-	// onClassChange(itemToWatch, (node) => {
-	//   var emailError = document.querySelector('.q-form.field-email .f-invalid');
-	//   // console.log(node.classList.contains('validate_8'));
-	//   const val = document.querySelector('.q-form.field-email input').value;
-	//   console.log(node.classList.contains('f-has-value'));
-	//   if (node.classList.contains('f-has-value')) {
-	//   	if (emailError === null && val.length > 0) {
-	//   		debugger;
-	//   		const form_id = jQuery('.frm-fluent-form').data('form_id');
-	//   		// debugger;
-	//   		jQuery.ajax({
-	// 			url: window.ElementorProFrontendConfig.ajaxurl,
-	// 			type: 'POST',
-	// 			data: {
-	// 				action: 'data_8_validate',
-	// 				type: 'email',
-	// 				value: val,
-	// 				form_id: form_id
-	// 			},
-	// 			beforeSend: function () {
-
-	// 			},
- 	// 			success: function( data ) {
-	// 				jQuery('.q-form.field-email .custom-error-alert').remove();
-	// 				skipEnter = false;
-	//   				document.querySelector('.q-form.field-email .ffc_question').nextSibling.style.setProperty("visibility", "visible", "important");
-	// 			},
-	// 			error: function(data) {
-	// 				jQuery('.q-form.field-email .ff_conv_input .custom-error-alert').remove();
-	// 				jQuery('.q-form.field-email .ff_conv_input .ffc_question').after('<div class="f-invalid custom-error-alert" role="alert" aria-live="assertive">'+data.responseJSON.errors.email+'</div>');
-	// 				console.log('Error', data.responseJSON.errors.email);
-	// 			},
-	// 			complete: function() {
-	// 				jQuery('.q-form.field-email').removeClass('validate_8');
-	// 			}
-	// 		});
-	//   	} else {
-	//   		skipEnter = true;
-	//   		jQuery('.q-form.field-email .ff_conv_input .custom-error-alert').remove();
-	//   	}
-	//   }
-	// });
 
   jQuery(document).on('click', '.prev_step', function() {
   	document.querySelector('.f-prev').click();

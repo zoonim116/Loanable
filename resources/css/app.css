@@ -179,6 +179,10 @@ h3, .h3 {
 }
 
 .ff_cond_v {
+  &.ff_submit_btn_wrapper {
+    float: right;
+  }
+
   & + .ff-inner_submit_container {
     .ff-btn-submit {
       display: none;
